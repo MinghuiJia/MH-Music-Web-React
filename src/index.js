@@ -1,17 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+/*
+ * @Author: jiaminghui
+ * @Date: 2022-10-18 22:12:48
+ * @LastEditTime: 2022-10-18 23:07:30
+ * @LastEditors: jiaminghui
+ * @FilePath: \mh-music-web-react\src\index.js
+ * @Description: 
+ */
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "@/assets/css/reset.css"
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// // disable react-dev-tools for this project
+// if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
+// 	for (let [key, value] of Object.entries(window.__REACT_DEVTOOLS_GLOBAL_HOOK__)) {
+// 		window.__REACT_DEVTOOLS_GLOBAL_HOOK__[key] = typeof value == "function" ? ()=>{} : null;
+// 	}
+// }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);

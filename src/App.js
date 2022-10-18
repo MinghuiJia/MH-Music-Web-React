@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+/*
+ * @Author: jiaminghui
+ * @Date: 2022-10-18 22:17:08
+ * @LastEditTime: 2022-10-18 22:46:39
+ * @LastEditors: jiaminghui
+ * @FilePath: \mh-music-web-react\src\App.js
+ * @Description: 
+ */
+import React, { memo } from 'react'
 
-function App() {
+export default memo(function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>App</h2>
+      nihao:<input type="text"/>
     </div>
-  );
-}
-
-export default App;
+  )
+})
