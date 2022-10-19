@@ -1,18 +1,26 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-18 22:17:08
- * @LastEditTime: 2022-10-18 22:46:39
+ * @LastEditTime: 2022-10-19 11:15:13
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\App.js
- * @Description: 
+ * @Description:
  */
-import React, { memo } from 'react'
+import React, { memo } from "react";
+import { HashRouter } from "react-router-dom";
+import { renderRoutes } from "react-router-config";
+
+import routes from "@/router";
+
+import MHAppHeader from "@/components/app-header";
+import MHAppFooter from "@/components/app-footer";
 
 export default memo(function App() {
   return (
-    <div>
-      <h2>App</h2>
-      nihao:<input type="text"/>
-    </div>
-  )
-})
+    <HashRouter>
+      <MHAppHeader />
+      {renderRoutes(routes)}
+      <MHAppFooter />
+    </HashRouter>
+  );
+});
