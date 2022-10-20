@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-19 15:12:15
- * @LastEditTime: 2022-10-19 19:47:06
+ * @LastEditTime: 2022-10-19 20:27:08
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\components\app-footer\style.js
  * @Description:
@@ -64,6 +64,7 @@ export const FooterRight = styled.div`
   .image-item {
     display: flex;
     flex-direction: column;
+    /* 交叉轴item的对齐方式，当前情况是水平居中 */
     align-items: center;
     margin-top: 33px;
   }

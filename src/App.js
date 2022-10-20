@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-18 22:17:08
- * @LastEditTime: 2022-10-19 11:15:13
+ * @LastEditTime: 2022-10-19 22:24:12
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\App.js
  * @Description:
@@ -20,6 +20,8 @@ export default memo(function App() {
     <HashRouter>
       <MHAppHeader />
       {renderRoutes(routes)}
+      
+      <hr style={{color: "#999999", margin: "0"}}/>
       <MHAppFooter />
     </HashRouter>
   );

@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-19 11:01:29
- * @LastEditTime: 2022-10-19 16:03:17
+ * @LastEditTime: 2022-10-19 21:19:44
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\components\app-header\index.js
  * @Description:
@@ -13,13 +13,13 @@ import { headerLinks } from "@/common/local-data";
 import { NavLink } from "react-router-dom";
 import { HeaderWrapper, HeaderLeft, HeaderRight } from "./style";
 import { Input } from "antd";
-import { SearchOutlined, UserOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 
 export default memo(function HYAppHeader() {
   const selectLink = (item, index) => {
     if (index < 3) {
       return (
-        <NavLink exact to={item.link}>
+        <NavLink to={item.link}>
           {item.title}
           <i className="sprite_01"></i>
         </NavLink>

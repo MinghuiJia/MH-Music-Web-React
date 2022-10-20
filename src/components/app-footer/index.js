@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-19 11:02:06
- * @LastEditTime: 2022-10-19 17:14:50
+ * @LastEditTime: 2022-10-19 20:31:26
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\components\app-footer\index.js
  * @Description:
@@ -56,7 +56,7 @@ export default memo(function HYAppFooter() {
             footerImages.map((item, index) => {
               return (
                 <div className="image-item" key={item.title}>
-                  <a href={item.link} className="image"> </a>
+                  <a href={item.link} className="image" target="_blank" rel="noreferrer"> </a>
                   {/* <span className="title">{item.title}</span> */}
                   <span className="title"></span>
                 </div>
