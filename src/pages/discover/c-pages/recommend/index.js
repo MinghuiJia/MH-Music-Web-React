@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-19 21:57:07
- * @LastEditTime: 2022-10-20 15:05:35
+ * @LastEditTime: 2022-10-21 20:49:18
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\index.js
  * @Description:
@@ -21,7 +21,9 @@ function MHRecommend(props) {
   // shallowEqual在这里比较的时候，因为是一个对象变量，两个对象变量的key对应的value都指向同一个地址，所以shallowEqual比较完结果是相同
   // 而在setState中的shallowEqual，例如一个students数组，元素是对象（姓名，身高等），由于这个students是一个数组，所以...浅层拷贝后新的数组与原来的数组地址变了，但是里面对象的地址是一致的。在shallowEqual中，只会比较到state下面的student变量对应的地址，也就是数组的地址，由于发生改变了，所以会更新state
   const { topBanner } = useSelector((state) => ({
-    topBanner: state.recommend.topBanner,
+    // topBanner: state.recommend.topBanner,
+    // topBanner: state.get("recommend").get("topBanner"),
+    topBanner: state.getIn(["recommend", "topBanner"]),
   }), shallowEqual);
 
   // 进行操作
