@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-20 11:58:20
- * @LastEditTime: 2022-10-21 20:39:27
+ * @LastEditTime: 2022-10-23 20:42:26
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\store\reducer.js
  * @Description:
@@ -17,6 +17,7 @@ import * as actionTypes from "./constants";
 // 每个页面都需要一个store对里面的数据进行管理，所以这里的每个state对象里面会有很多数据，我们需要对这个对象进行Immutable转换，提升性能
 const initState = Map({
   topBanner: [],
+  hotRecommend: [],
 });
 
 const reducer = (state = initState, action) => {
@@ -24,6 +25,8 @@ const reducer = (state = initState, action) => {
     case actionTypes.CHANGE_BANNER:
       // return { ...state, topBanner: [...action.banner] };
       return state.set("topBanner", action.banner);
+    case actionTypes.CHANGE_HOT_RECOMMEND:
+      return state.set("hotRecommend", action.hotRecommend);
     default:
       return state;
   }

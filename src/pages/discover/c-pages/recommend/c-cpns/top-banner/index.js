@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-22 11:38:36
- * @LastEditTime: 2022-10-22 23:11:50
+ * @LastEditTime: 2022-10-23 18:42:32
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\c-cpns\banner\index.js
  * @Description:
@@ -10,7 +10,6 @@ import React, {
   memo,
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from "react";

@@ -1,9 +1,9 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-22 11:38:44
- * @LastEditTime: 2022-10-22 22:57:29
+ * @LastEditTime: 2022-10-23 22:45:13
  * @LastEditors: jiaminghui
- * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\c-cpns\banner\style.js
+ * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\c-cpns\top-banner\style.js
  * @Description:
  */
 import styled from "styled-components";
@@ -15,7 +15,6 @@ export const MHBannerWrapper = styled.div`
 
   .banner {
     height: 100%;
-    background-color: red;
     display: flex;
   }
 `;
@@ -23,7 +22,6 @@ export const MHBannerWrapper = styled.div`
 export const BannerLeft = styled.div`
   width: 730px;
   height: 100%;
-  background-color: green;
   .banner-item .image {
     width: 730px;
     height: 285px;

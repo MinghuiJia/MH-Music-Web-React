@@ -1,20 +1,33 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-19 21:57:07
- * @LastEditTime: 2022-10-22 22:59:34
+ * @LastEditTime: 2022-10-23 20:08:02
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\index.js
  * @Description:
  */
 import React, { memo } from "react";
 
-import { MHRecommednWrapper } from "./style";
-import MHBanner from "./c-cpns/banner";
+import { MHRecommednWrapper, MHContentWrapper } from "./style";
+import MHBanner from "./c-cpns/top-banner";
+import MHHotRecommend from "./c-cpns/hot-recommend";
+import MHNewAlbum from './c-cpns/new-album'
+import MHRecommendRanking from './c-cpns/recommend-ranking'
 
-function MHRecommend(props) {
+function MHRecommend() {
   return (
     <MHRecommednWrapper>
       <MHBanner />
+      <MHContentWrapper className="wrap-v2">
+        <div className="content">
+          <div className="content-left">
+            <MHHotRecommend />
+            <MHNewAlbum />
+            <MHRecommendRanking />
+          </div>
+          <div className="content-right"></div>
+        </div>
+      </MHContentWrapper>
     </MHRecommednWrapper>
   );
 }
