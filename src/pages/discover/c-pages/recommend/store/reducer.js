@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-20 11:58:20
- * @LastEditTime: 2022-10-23 20:42:26
+ * @LastEditTime: 2022-10-25 13:28:29
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\store\reducer.js
  * @Description:
@@ -18,6 +18,7 @@ import * as actionTypes from "./constants";
 const initState = Map({
   topBanner: [],
   hotRecommend: [],
+  newAlbum: [],
 });
 
 const reducer = (state = initState, action) => {
@@ -27,6 +28,8 @@ const reducer = (state = initState, action) => {
       return state.set("topBanner", action.banner);
     case actionTypes.CHANGE_HOT_RECOMMEND:
       return state.set("hotRecommend", action.hotRecommend);
+    case actionTypes.CHANGE_NEW_ALBUM:
+      return state.set("newAlbum", action.newAlbum);
     default:
       return state;
   }
