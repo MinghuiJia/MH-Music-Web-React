@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-20 13:29:13
- * @LastEditTime: 2022-10-25 13:20:10
+ * @LastEditTime: 2022-10-26 10:36:19
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\services\recommend.js
  * @Description:
@@ -28,6 +28,15 @@ export const getNewAlbum = (limit) => {
     url: "/top/album",
     params: {
       limit: limit,
+    },
+  });
+};
+
+export const getRankings = (idx) => {
+  return request({
+    url: "/top/list",
+    params: {
+      idx: idx,
     },
   });
 };
