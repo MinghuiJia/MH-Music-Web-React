@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-20 13:29:13
- * @LastEditTime: 2022-10-26 10:36:19
+ * @LastEditTime: 2022-10-26 17:22:40
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\services\recommend.js
  * @Description:
@@ -37,6 +37,25 @@ export const getRankings = (idx) => {
     url: "/top/list",
     params: {
       idx: idx,
+    },
+  });
+};
+
+export const getArtistLists = (cat) => {
+  return request({
+    url: "/artist/list",
+    params: {
+      cat: cat,
+    },
+  });
+};
+
+export const getHotArtists = () => {
+  return request({
+    url: "/top/artists",
+    params: {
+      offset: 0,
+      limit: 5,
     },
   });
 };

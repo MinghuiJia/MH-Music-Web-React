@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-20 11:58:20
- * @LastEditTime: 2022-10-26 10:41:36
+ * @LastEditTime: 2022-10-26 17:16:19
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\store\reducer.js
  * @Description:
@@ -22,6 +22,8 @@ const initState = Map({
   newSongsRanking: [],
   fastRanking: [],
   oriSongsRanking: [],
+  artistList: [],
+  hotArtist: [],
 });
 
 const reducer = (state = initState, action) => {
@@ -39,6 +41,10 @@ const reducer = (state = initState, action) => {
       return state.set("fastRanking", action.fastRanking);
     case actionTypes.CHANGE_ORI_SONGS_RANKING:
       return state.set("oriSongsRanking", action.oriSongsRanking);
+    case actionTypes.CHANGE_ARTIST_LIST:
+      return state.set("artistList", action.artistList);
+    case actionTypes.CHANGE_HOT_ARTIST:
+      return state.set("hotArtist", action.hotArtist);
     default:
       return state;
   }
