@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-26 10:58:07
- * @LastEditTime: 2022-10-26 13:11:14
+ * @LastEditTime: 2022-10-26 19:47:36
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\components\ranking-column-rcm\style.js
  * @Description:
@@ -117,9 +117,14 @@ export const MHRankingColumnWrapper = styled.div`
       }
     }
   }
-  .ranking-item:nth-child(1),
+  /* .ranking-item:nth-child(1),
   .ranking-item:nth-child(2),
-  .ranking-item:nth-child(3) span {
+  .ranking-item:nth-child(3) {
+    span {
+      color: #c10d0c;
+    }
+  } */
+  .ranking-item:nth-child(-n + 3) span {
     color: #c10d0c;
   }
 

@@ -1,9 +1,9 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-26 15:57:29
- * @LastEditTime: 2022-10-26 16:50:59
+ * @LastEditTime: 2022-10-27 16:43:19
  * @LastEditors: jiaminghui
- * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\c-cpns\artist-list\index.js
+ * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\c-cpns\settle-singer\index.js
  * @Description:
  */
 import React, { memo, useEffect } from "react";
@@ -12,10 +12,10 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { getArtistListsAction } from "../../store/actionCreators";
 import { getSizeImg } from "@/utils/format-utils";
 
-import { MHArtistListWrapper } from "./style";
+import { MHSettleSingerWrapper } from "./style";
 import MHListHeaderRCM from "@/components/list-header-rcm";
 
-export default memo(function MHArtistList() {
+export default memo(function MHSettleSinger() {
   //redux hooks
   const { artistList } = useSelector((state) => {
     return {
@@ -28,7 +28,7 @@ export default memo(function MHArtistList() {
   }, [dispatch]);
 
   return (
-    <MHArtistListWrapper>
+    <MHSettleSingerWrapper>
       <MHListHeaderRCM title="入驻歌手" all_link={["查看全部>"]} />
       <div className="artist-name-list">
         {artistList.map((item, index) => {
@@ -51,6 +51,6 @@ export default memo(function MHArtistList() {
           return index <5 && <h2>{item.name}</h2>;
         })} */}
       </div>
-    </MHArtistListWrapper>
+    </MHSettleSingerWrapper>
   );
 });

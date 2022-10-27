@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-19 21:57:07
- * @LastEditTime: 2022-10-26 17:09:23
+ * @LastEditTime: 2022-10-27 16:43:52
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\index.js
  * @Description:
@@ -14,7 +14,7 @@ import MHHotRecommend from "./c-cpns/hot-recommend";
 import MHNewAlbum from "./c-cpns/new-album";
 import MHRecommendRanking from "./c-cpns/recommend-ranking";
 import MHLogin from "./c-cpns/user-login";
-import MHArtistList from "./c-cpns/artist-list";
+import MHSettleSinger from "./c-cpns/settle-singer";
 import MHHotArtist from './c-cpns/hot-artist'
 
 function MHRecommend() {
@@ -30,7 +30,7 @@ function MHRecommend() {
           </div>
           <div className="content-right">
             <MHLogin />
-            <MHArtistList />
+            <MHSettleSinger />
             <MHHotArtist />
           </div>
         </div>

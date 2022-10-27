@@ -1,13 +1,13 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-26 15:57:33
- * @LastEditTime: 2022-10-26 16:51:34
+ * @LastEditTime: 2022-10-27 16:42:47
  * @LastEditors: jiaminghui
- * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\c-cpns\artist-list\style.js
+ * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\c-cpns\settle-singer\style.js
  * @Description:s
  */
 import styled from "styled-components";
-export const MHArtistListWrapper = styled.div`
+export const MHSettleSingerWrapper = styled.div`
   .artist-item {
     margin-top: 14px;
     border: 1px solid #e9e9e9;
