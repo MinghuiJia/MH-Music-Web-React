@@ -1,0 +1,1 @@
+export const CHANGE_CURRENT_SONG = "MHPlayer/CHANGE_CURRENT_SONG";

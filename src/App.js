@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-18 22:17:08
- * @LastEditTime: 2022-10-20 11:56:33
+ * @LastEditTime: 2022-10-27 17:25:04
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\App.js
  * @Description:
@@ -12,10 +12,11 @@ import { renderRoutes } from "react-router-config";
 import { Provider } from "react-redux";
 
 import routes from "@/router";
-import store from '@/store'
+import store from "@/store";
 
 import MHAppHeader from "@/components/app-header";
 import MHAppFooter from "@/components/app-footer";
+import MHAppPlayerBar from "./pages/player/app-player-bar";
 
 export default memo(function App() {
   return (
@@ -26,6 +27,7 @@ export default memo(function App() {
 
         <hr style={{ color: "#999999", margin: "0" }} />
         <MHAppFooter />
+        <MHAppPlayerBar />
       </HashRouter>
     </Provider>
   );
