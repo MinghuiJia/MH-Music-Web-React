@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-20 11:58:16
- * @LastEditTime: 2022-10-26 17:24:03
+ * @LastEditTime: 2022-10-28 21:39:09
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\store\actionCreators.js
  * @Description:
@@ -104,7 +104,7 @@ export const getRankingsAction = (idx) => {
       // 新歌榜
       if (idx === 0) dispatch(changeNewSongsRankingAction(res.playlist));
       // 原创榜
-      if (idx === 2) dispatch(changeOriSongsRankingAction(res.playlist));
+      if (idx === 1) dispatch(changeOriSongsRankingAction(res.playlist));
       // 飙升榜
       if (idx === 3) dispatch(changeFastRankingAction(res.playlist));
     });

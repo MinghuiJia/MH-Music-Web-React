@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-26 15:57:33
- * @LastEditTime: 2022-10-27 16:42:47
+ * @LastEditTime: 2022-10-28 21:45:32
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\c-cpns\settle-singer\style.js
  * @Description:s
@@ -22,8 +22,10 @@ export const MHSettleSingerWrapper = styled.div`
       height: 62px;
     }
     .artist-info {
+      flex: 1;
       margin-left: 14px;
       .artist-name {
+        width: 100%;
         display: inline-block;
         font-size: 14px;
         font-weight: bolder;

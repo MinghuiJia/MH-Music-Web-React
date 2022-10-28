@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-26 15:57:29
- * @LastEditTime: 2022-10-27 16:43:19
+ * @LastEditTime: 2022-10-28 21:45:55
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\c-cpns\settle-singer\index.js
  * @Description:
@@ -36,8 +36,8 @@ export default memo(function MHSettleSinger() {
             index < 5 && (
               <div className="artist-item" key={item.id}>
                 <img src={getSizeImg(item.img1v1Url, 62)} alt=""></img>
-                <div className="artist-info">
-                  <span className="artist-name">
+                <div className="artist-info text-nowrap">
+                  <span className="artist-name text-nowrap">
                     {item.name + (item.alias[0] || "")}
                   </span>
                   <span className="artist-describe"></span>

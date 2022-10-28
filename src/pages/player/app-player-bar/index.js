@@ -1,17 +1,29 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:09
- * @LastEditTime: 2022-10-28 11:42:59
+ * @LastEditTime: 2022-10-28 22:37:04
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\index.js
  * @Description:
  */
-import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  memo,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useMemo,
+} from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 
-import { getSongDetailAction } from "../store/actionCreators";
+import {
+  getSongDetailAction,
+  getSongLyricAction,
+  changeLyricListAction,
+} from "../store/actionCreators";
 import { getSizeImg, getSongPlayer } from "@/utils/format-utils";
+import { parseLyric } from "@/utils/parse-lyric";
 
 import { Slider } from "antd";
 import {
@@ -20,6 +32,7 @@ import {
   Player,
   RightControl,
 } from "./style";
+import { NavLink } from "react-router-dom";
 
 export default memo(function MHAppPlayerBar() {
   // state
@@ -29,9 +42,10 @@ export default memo(function MHAppPlayerBar() {
   const [isPlay, setIsPlay] = useState(false);
 
   //redux hooks
-  const { currentSong } = useSelector((state) => {
+  const { currentSong, songLyric } = useSelector((state) => {
     return {
       currentSong: state.getIn(["player", "currentSong"]),
+      songLyric: state.getIn(["player", "songLyric"]),
     };
   }, shallowEqual);
 
@@ -40,10 +54,25 @@ export default memo(function MHAppPlayerBar() {
     dispatch(getSongDetailAction(167876));
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(getSongLyricAction(167876));
+  }, [dispatch]);
+
   // other hooks
   useEffect(() => {
     console.log(currentSong);
   }, [currentSong]);
+
+  // 正则表达式解析歌词
+  const parseLyricResult = useMemo(() => {
+    // 在没请求到数据之前会是空的，不能用split进行分割
+    return parseLyric(songLyric.lyric || "");
+  }, [songLyric]);
+
+  useEffect(() => {
+    dispatch(changeLyricListAction(parseLyricResult));
+  }, [dispatch, songLyric, parseLyricResult]);
+
   const audioRef = useRef();
 
   //other handle
@@ -108,9 +137,9 @@ export default memo(function MHAppPlayerBar() {
         </LeftControl>
         <Player>
           <div className="song-image">
-            <a href="goto">
+            <NavLink to={`/discover/player?id=${currentSong.id}`}>
               <img src={getSizeImg(picUrl, 34)} alt=""></img>
-            </a>
+            </NavLink>
           </div>
           <div className="song-info">
             <div className="infos">

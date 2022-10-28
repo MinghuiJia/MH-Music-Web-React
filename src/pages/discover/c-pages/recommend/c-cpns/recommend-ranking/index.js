@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-23 20:04:09
- * @LastEditTime: 2022-10-26 12:30:14
+ * @LastEditTime: 2022-10-28 21:37:01
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\recommend\c-cpns\recommend-ranking\index.js
  * @Description:
@@ -34,7 +34,7 @@ export default memo(function MHRecommendRanking() {
     // 新歌榜请求数据
     dispatch(getRankingsAction(0));
     // 原创榜请求数据
-    dispatch(getRankingsAction(2));
+    dispatch(getRankingsAction(1));
     // 飙升榜请求数据
     dispatch(getRankingsAction(3));
   }, [dispatch]);
