@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:09
- * @LastEditTime: 2022-10-27 23:21:03
+ * @LastEditTime: 2022-10-28 11:42:59
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\index.js
  * @Description:
@@ -26,6 +26,7 @@ export default memo(function MHAppPlayerBar() {
   const [currentTime, setCurrentTime] = useState(0);
   const [progress, SetProgress] = useState(0);
   const [isDown, setIsDown] = useState(false);
+  const [isPlay, setIsPlay] = useState(false);
 
   //redux hooks
   const { currentSong } = useSelector((state) => {
@@ -51,15 +52,26 @@ export default memo(function MHAppPlayerBar() {
   const singerName = (currentSong.ar && currentSong.ar[0].name) || "";
   const duration = currentSong.dt || "0";
 
-  const playMusic = (currTime) => {
+  // 该代码只有在第一次进入，或是currentSong发生改变后才会更新audio的src，所以写在了useEffect的hook中
+  useEffect(() => {
     audioRef.current.src = getSongPlayer(currentSong.id);
-    audioRef.current.currentTime = currTime / 1000;
-    audioRef.current.play();
-  };
+  }, [currentSong]);
+
+  const playMusic = useCallback(
+    (currTime) => {
+      setIsPlay(!isPlay);
+      if (isPlay) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+    },
+    [isPlay]
+  );
 
   const changeCurrentTime = (e) => {
     // *1000变为毫秒
-    if (isDown === true) SetProgress(e.target.currentTime * 1000);
+    if (isDown === true) SetProgress(currentTime);
     setCurrentTime(e.target.currentTime * 1000);
   };
 
@@ -68,22 +80,29 @@ export default memo(function MHAppPlayerBar() {
     SetProgress(value);
   }, []);
 
-  const afterChangeSliderValue = useCallback((value) => {
-    // 当前value拿到的是毫秒，但其实radio的e.target.currentTime是秒
-    // setIsDown(true);
-    setIsDown(true);
-    setCurrentTime(value);
-    audioRef.current.currentTime = value / 1000;
-  }, []);
+  const afterChangeSliderValue = useCallback(
+    (value) => {
+      // 当前value拿到的是毫秒，但其实radio的e.target.currentTime是秒
+      // setIsDown(true);
+      setIsDown(true);
+      setCurrentTime(value);
+      audioRef.current.currentTime = value / 1000;
+
+      if (!isPlay) playMusic();
+    },
+    [isPlay, playMusic]
+  );
 
   return (
     <HYAppPlayerBarWrapper className="sprite_player">
       <div className="content wrap-v2">
-        <LeftControl>
+        <LeftControl isPlay={isPlay}>
           <button className="sprite_player prev"></button>
           <button
             className="sprite_player play"
-            onClick={(e) => playMusic(currentTime)}
+            onClick={(e) => {
+              playMusic(currentTime);
+            }}
           ></button>
           <button className="sprite_player next"></button>
         </LeftControl>

@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:20
- * @LastEditTime: 2022-10-27 20:54:57
+ * @LastEditTime: 2022-10-28 11:38:57
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\style.js
  * @Description:
@@ -55,9 +55,9 @@ export const LeftControl = styled.div`
     }
   }
   .play {
-    background-position: 0 -204px;
+    background-position: ${(props) => {return props.isPlay ? "0 -165px;" : "0 -204px"}};
     &:hover {
-      background-position: -40px -204px;
+      background-position: ${(props) => {return props.isPlay ? "-40px -165px;" : "-40px -204px"}};
     }
   }
 `;
