@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-26 10:58:02
- * @LastEditTime: 2022-10-30 21:16:03
+ * @LastEditTime: 2022-10-30 22:01:48
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\components\ranking-column-rcm\index.js
  * @Description:
@@ -20,7 +20,6 @@ export default memo(function MHRankingColumn(props) {
   // redux hooks
   const dispatch = useDispatch();
   const playMusic = (item) => {
-    console.log(item.id);
     dispatch(getSongDetailAction(item.id));
   };
 

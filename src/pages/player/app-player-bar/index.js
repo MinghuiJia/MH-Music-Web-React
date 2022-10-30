@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:09
- * @LastEditTime: 2022-10-30 21:36:22
+ * @LastEditTime: 2022-10-30 22:22:46
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\index.js
  * @Description:
@@ -21,6 +21,7 @@ import {
   getSongDetailAction,
   getSongLyricAction,
   changeLyricListAction,
+  changeSequenceAction,
 } from "../store/actionCreators";
 import { getSizeImg, getSongPlayer } from "@/utils/format-utils";
 import { parseLyric } from "@/utils/parse-lyric";
@@ -42,13 +43,17 @@ export default memo(function MHAppPlayerBar() {
   const [isPlay, setIsPlay] = useState(false);
 
   //redux hooks
-  const { currentSong, songLyric, playList } = useSelector((state) => {
-    return {
-      currentSong: state.getIn(["player", "currentSong"]),
-      songLyric: state.getIn(["player", "songLyric"]),
-      playList: state.getIn(["player", "playList"]),
-    };
-  }, shallowEqual);
+  const { currentSong, songLyric, playList, sequence } = useSelector(
+    (state) => {
+      return {
+        currentSong: state.getIn(["player", "currentSong"]),
+        songLyric: state.getIn(["player", "songLyric"]),
+        playList: state.getIn(["player", "playList"]),
+        sequence: state.getIn(["player", "sequence"]),
+      };
+    },
+    shallowEqual
+  );
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -123,6 +128,14 @@ export default memo(function MHAppPlayerBar() {
     [isPlay, playMusic]
   );
 
+  const changeSequence = () => {
+    let newSequence = sequence + 1;
+    if (newSequence > 2) {
+      newSequence = 0;
+    }
+    dispatch(changeSequenceAction(newSequence));
+  };
+
   return (
     <HYAppPlayerBarWrapper className="sprite_player">
       <div className="content wrap-v2">
@@ -180,7 +193,7 @@ export default memo(function MHAppPlayerBar() {
             </div>
           </div>
         </Player>
-        <RightControl>
+        <RightControl sequence={sequence}>
           <div className="left">
             <div className="pip icon"></div>
             <div className="like sprite_player icon"></div>
@@ -189,7 +202,10 @@ export default memo(function MHAppPlayerBar() {
           <div className="divider">|</div>
           <div className="right">
             <div className="vol sprite_player icon"></div>
-            <div className="loop sprite_player icon"></div>
+            <div
+              className="loop sprite_player icon"
+              onClick={(e) => changeSequence()}
+            ></div>
             <div className="menu sprite_player">
               <a href="goto">{playList.length}</a>
             </div>

@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:20
- * @LastEditTime: 2022-10-30 21:39:13
+ * @LastEditTime: 2022-10-30 22:28:41
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\style.js
  * @Description:
@@ -55,9 +55,13 @@ export const LeftControl = styled.div`
     }
   }
   .play {
-    background-position: ${(props) => {return props.isPlay ? "0 -165px;" : "0 -204px"}};
+    background-position: ${(props) => {
+      return props.isPlay ? "0 -165px;" : "0 -204px";
+    }};
     &:hover {
-      background-position: ${(props) => {return props.isPlay ? "-40px -165px;" : "-40px -204px"}};
+      background-position: ${(props) => {
+        return props.isPlay ? "-40px -165px;" : "-40px -204px";
+      }};
     }
   }
 `;
@@ -194,9 +198,27 @@ export const RightControl = styled.div`
       }
     }
     .loop {
-      background-position: -3px -344px;
+      background-position: ${(props) => {
+        switch (props.sequence) {
+          case 1:
+            return "-66px -248px";
+          case 2:
+            return "-66px -344px";
+          default:
+            return "-3px -344px";
+        }
+      }};
       &:hover {
-        background-position: -33px -344px;
+        background-position: ${(props) => {
+          switch (props.sequence) {
+            case 1:
+              return "-93px -248px";
+            case 2:
+              return "-93px -344px";
+            default:
+              return "-33px -344px";
+          }
+        }};
       }
     }
     .menu {

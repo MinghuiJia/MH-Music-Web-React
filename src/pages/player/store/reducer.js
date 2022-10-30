@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 21:01:59
- * @LastEditTime: 2022-10-30 20:23:58
+ * @LastEditTime: 2022-10-30 22:08:52
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\store\reducer.js
  * @Description:
@@ -22,6 +22,7 @@ const initState = Map({
   playList: [],
   currentSongIndex: 0,
   currentSong: {},
+  sequence: 0, // 0顺序播放， 1随机播放，2单曲播放
   simiPlayList: [],
   simiSong: [],
   songLyric: {},
@@ -36,6 +37,8 @@ const reducer = (state = initState, action) => {
       return state.set("currentSongIndex", action.index);
     case actionTypes.CHANGE_PLAY_LIST:
       return state.set("playList", action.playList);
+    case actionTypes.CHANGE_SEQUENCE:
+      return state.set("sequence", action.sequence);
     case actionTypes.CHANGE_SIMI_PLAY_LIST:
       return state.set("simiPlayList", action.simiPlayList);
     case actionTypes.CHANGE_SIMI_SONG:

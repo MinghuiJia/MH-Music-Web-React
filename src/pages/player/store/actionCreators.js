@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 21:02:11
- * @LastEditTime: 2022-10-30 21:12:57
+ * @LastEditTime: 2022-10-30 22:09:49
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\store\actionCreators.js
  * @Description:
@@ -33,6 +33,13 @@ export const changePlayListAction = (playList) => {
   return {
     type: actionTypes.CHANGE_PLAY_LIST,
     playList,
+  };
+};
+
+export const changeSequenceAction = (sequence) => {
+  return {
+    type: actionTypes.CHANGE_SEQUENCE,
+    sequence,
   };
 };
 
