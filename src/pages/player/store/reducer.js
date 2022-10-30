@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 21:01:59
- * @LastEditTime: 2022-10-28 22:33:50
+ * @LastEditTime: 2022-10-30 20:23:58
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\store\reducer.js
  * @Description:
@@ -19,6 +19,8 @@ import { Map } from "immutable";
 import * as actionTypes from "./constants";
 
 const initState = Map({
+  playList: [],
+  currentSongIndex: 0,
   currentSong: {},
   simiPlayList: [],
   simiSong: [],
@@ -30,6 +32,10 @@ const reducer = (state = initState, action) => {
   switch (action.type) {
     case actionTypes.CHANGE_CURRENT_SONG:
       return state.set("currentSong", action.currentSong);
+    case actionTypes.CHANGE_CURRENT_SONG_INDEX:
+      return state.set("currentSongIndex", action.index);
+    case actionTypes.CHANGE_PLAY_LIST:
+      return state.set("playList", action.playList);
     case actionTypes.CHANGE_SIMI_PLAY_LIST:
       return state.set("simiPlayList", action.simiPlayList);
     case actionTypes.CHANGE_SIMI_SONG:

@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:20
- * @LastEditTime: 2022-10-28 11:38:57
+ * @LastEditTime: 2022-10-30 21:39:13
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\style.js
  * @Description:
@@ -83,7 +83,7 @@ export const Player = styled.div`
       align-items: center;
       .song-name {
         display: inline-block;
-        width: 48px;
+        /* width: 48px; */
         height: 23px;
         line-height: 23px;
         color: #e8e8e8;

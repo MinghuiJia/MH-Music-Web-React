@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:09
- * @LastEditTime: 2022-10-28 22:37:04
+ * @LastEditTime: 2022-10-30 21:36:22
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\index.js
  * @Description:
@@ -42,10 +42,11 @@ export default memo(function MHAppPlayerBar() {
   const [isPlay, setIsPlay] = useState(false);
 
   //redux hooks
-  const { currentSong, songLyric } = useSelector((state) => {
+  const { currentSong, songLyric, playList } = useSelector((state) => {
     return {
       currentSong: state.getIn(["player", "currentSong"]),
       songLyric: state.getIn(["player", "songLyric"]),
+      playList: state.getIn(["player", "playList"]),
     };
   }, shallowEqual);
 
@@ -190,7 +191,7 @@ export default memo(function MHAppPlayerBar() {
             <div className="vol sprite_player icon"></div>
             <div className="loop sprite_player icon"></div>
             <div className="menu sprite_player">
-              <a href="goto">11</a>
+              <a href="goto">{playList.length}</a>
             </div>
           </div>
         </RightControl>
