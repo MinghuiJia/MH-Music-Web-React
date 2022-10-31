@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:09
- * @LastEditTime: 2022-10-30 22:22:46
+ * @LastEditTime: 2022-10-31 22:15:16
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\index.js
  * @Description:
@@ -22,6 +22,7 @@ import {
   getSongLyricAction,
   changeLyricListAction,
   changeSequenceAction,
+  changeCurrenSongIndexAndCurrentSongAction,
 } from "../store/actionCreators";
 import { getSizeImg, getSongPlayer } from "@/utils/format-utils";
 import { parseLyric } from "@/utils/parse-lyric";
@@ -90,6 +91,15 @@ export default memo(function MHAppPlayerBar() {
   // 该代码只有在第一次进入，或是currentSong发生改变后才会更新audio的src，所以写在了useEffect的hook中
   useEffect(() => {
     audioRef.current.src = getSongPlayer(currentSong.id);
+    // 这个play返回的是一个promise，因为在第一次加载时audio并不会播放，同时有些音乐没版权
+    audioRef.current
+      .play()
+      .then((res) => {
+        setIsPlay(true);
+      })
+      .catch((err) => {
+        setIsPlay(false);
+      });
   }, [currentSong]);
 
   const playMusic = useCallback(
@@ -108,6 +118,20 @@ export default memo(function MHAppPlayerBar() {
     // *1000变为毫秒
     if (isDown === true) SetProgress(currentTime);
     setCurrentTime(e.target.currentTime * 1000);
+  };
+
+  const changeMusic = (tag) => {
+    dispatch(changeCurrenSongIndexAndCurrentSongAction(tag));
+  };
+
+  const handleEndedMusci = () => {
+    switch (sequence) {
+      case 2: // 单曲播放
+        audioRef.current.play();
+        break;
+      default: // 顺序和随机播放
+        dispatch(changeCurrenSongIndexAndCurrentSongAction(1));
+    }
   };
 
   const changeSliderValue = useCallback((value) => {
@@ -140,14 +164,20 @@ export default memo(function MHAppPlayerBar() {
     <HYAppPlayerBarWrapper className="sprite_player">
       <div className="content wrap-v2">
         <LeftControl isPlay={isPlay}>
-          <button className="sprite_player prev"></button>
+          <button
+            className="sprite_player prev"
+            onClick={(e) => changeMusic(-1)}
+          ></button>
           <button
             className="sprite_player play"
             onClick={(e) => {
               playMusic(currentTime);
             }}
           ></button>
-          <button className="sprite_player next"></button>
+          <button
+            className="sprite_player next"
+            onClick={(e) => changeMusic(1)}
+          ></button>
         </LeftControl>
         <Player>
           <div className="song-image">
@@ -215,7 +245,13 @@ export default memo(function MHAppPlayerBar() {
 
       {/* 搞一个audio，帮助我们播放流媒体数据 */}
       {/* audio 有一个 onTimeUpdate 回调函数，可以监听音频当前播放的时间 */}
-      <audio ref={audioRef} onTimeUpdate={changeCurrentTime} />
+      <audio
+        ref={audioRef}
+        onTimeUpdate={(e) => changeCurrentTime(e)}
+        onEnded={(e) => {
+          handleEndedMusci();
+        }}
+      />
     </HYAppPlayerBarWrapper>
   );
 });

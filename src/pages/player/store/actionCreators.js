@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 21:02:11
- * @LastEditTime: 2022-10-30 22:09:49
+ * @LastEditTime: 2022-10-31 21:48:52
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\store\actionCreators.js
  * @Description:
@@ -14,6 +14,7 @@ import {
   getSimiSong,
   getSongLyric,
 } from "@/services/player";
+import { getRandomNumber } from "@/utils/math-utils";
 
 export const changeCurrentSongAction = (currentSong) => {
   return {
@@ -71,6 +72,31 @@ export const changeLyricListAction = (lyricList) => {
   };
 };
 
+export const changeCurrenSongIndexAndCurrentSongAction = (tag) => {
+  return (dispatch, getState) => {
+    const sequence = getState().getIn(["player", "sequence"]);
+    let currentSongIndex = getState().getIn(["player", "currentSongIndex"]);
+    const playList = getState().getIn(["player", "playList"]);
+    let randomIndex = -1;
+    switch (sequence) {
+      case 1: // 随机播放
+        randomIndex = getRandomNumber(playList.length);
+        while (currentSongIndex === randomIndex) {
+          randomIndex = getRandomNumber(playList.length);
+        }
+        currentSongIndex = randomIndex;
+        break;
+      default: // 顺序播放或单曲播放，点击切换都会变的，所以逻辑一致
+        currentSongIndex += tag;
+        if (currentSongIndex >= playList.length) currentSongIndex = 0;
+        if (currentSongIndex < 0) currentSongIndex = playList.length - 1;
+    }
+    const currentSong = playList[currentSongIndex];
+    dispatch(changeCurrentSongIndexAction(currentSongIndex));
+    dispatch(changeCurrentSongAction(currentSong));
+  };
+};
+
 export const getSongDetailAction = (ids) => {
   return (dispatch, getState) => {
     const playList = getState().getIn(["player", "playList"]);
@@ -79,12 +105,10 @@ export const getSongDetailAction = (ids) => {
 
     // 表示当前点击的歌曲已经在列表中
     if (songIndex !== -1) {
-      console.log("当前有歌曲");
       dispatch(changeCurrentSongIndexAction(songIndex));
       dispatch(changeCurrentSongAction(playList[songIndex]));
     } // 表示当前点击的歌曲不在列表中
     else {
-      console.log("当前没有歌曲");
       getSongDetail(ids).then((res) => {
         console.log(res);
 
