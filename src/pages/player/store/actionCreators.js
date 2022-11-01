@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 21:02:11
- * @LastEditTime: 2022-10-31 21:48:52
+ * @LastEditTime: 2022-11-01 22:19:22
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\store\actionCreators.js
  * @Description:
@@ -15,6 +15,7 @@ import {
   getSongLyric,
 } from "@/services/player";
 import { getRandomNumber } from "@/utils/math-utils";
+import { parseLyric } from "@/utils/parse-lyric";
 
 export const changeCurrentSongAction = (currentSong) => {
   return {
@@ -58,13 +59,6 @@ export const changeSimiSongAction = (simiSong) => {
   };
 };
 
-export const changeSongLyricAction = (songLyric) => {
-  return {
-    type: actionTypes.CHANGE_SONG_LYRIC,
-    songLyric,
-  };
-};
-
 export const changeLyricListAction = (lyricList) => {
   return {
     type: actionTypes.CHANGE_LYRIC_LIST,
@@ -94,6 +88,8 @@ export const changeCurrenSongIndexAndCurrentSongAction = (tag) => {
     const currentSong = playList[currentSongIndex];
     dispatch(changeCurrentSongIndexAction(currentSongIndex));
     dispatch(changeCurrentSongAction(currentSong));
+    // 当进行切歌时，也需要获取歌词
+    dispatch(getSongLyricAction(currentSong.id));
   };
 };
 
@@ -107,6 +103,8 @@ export const getSongDetailAction = (ids) => {
     if (songIndex !== -1) {
       dispatch(changeCurrentSongIndexAction(songIndex));
       dispatch(changeCurrentSongAction(playList[songIndex]));
+      // 请求歌曲详细信息时也要请求相应的歌词
+      dispatch(getSongLyricAction(playList[songIndex].id));
     } // 表示当前点击的歌曲不在列表中
     else {
       getSongDetail(ids).then((res) => {
@@ -120,13 +118,10 @@ export const getSongDetailAction = (ids) => {
         dispatch(changeCurrentSongAction(song));
         dispatch(changePlayListAction(newPlayList));
         dispatch(changeCurrentSongIndexAction(newPlayList.length - 1));
+        // 请求歌曲详细信息时也要请求相应的歌词
+        dispatch(getSongLyricAction(song.id));
       });
     }
-
-    // getSongDetail(ids).then((res) => {
-    //   console.log(res);
-    //   dispatch(changeCurrentSongAction(res.songs[0]));
-    // });
   };
 };
 
@@ -151,8 +146,8 @@ export const getSimiSongAction = (id) => {
 export const getSongLyricAction = (id) => {
   return (dispatch, getState) => {
     getSongLyric(id).then((res) => {
-      console.log(res);
-      dispatch(changeSongLyricAction(res.lrc));
+      const lyricList = parseLyric(res.lrc.lyric);
+      dispatch(changeLyricListAction(lyricList));
     });
   };
 };

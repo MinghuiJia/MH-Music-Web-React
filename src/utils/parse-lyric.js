@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-28 21:58:48
- * @LastEditTime: 2022-10-28 22:24:37
+ * @LastEditTime: 2022-11-01 20:59:11
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\utils\parse-lyric.js
  * @Description:
@@ -29,6 +29,7 @@ export function parseLyric(lyricString) {
     if (line) {
       const result = parseExp.exec(line);
       if (!result) continue;
+      // result[0]返回的是parseExp匹配到的完整字符串，没有分组
       const time1 = result[1] * 60 * 1000;
       const time2 = result[2] * 1000;
       const time3 = result[3].length === 3 ? result[3] * 1 : result[3] * 10;

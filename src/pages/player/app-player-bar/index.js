@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:09
- * @LastEditTime: 2022-10-31 22:15:16
+ * @LastEditTime: 2022-11-01 22:07:45
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\index.js
  * @Description:
@@ -20,12 +20,10 @@ import moment from "moment";
 import {
   getSongDetailAction,
   getSongLyricAction,
-  changeLyricListAction,
   changeSequenceAction,
   changeCurrenSongIndexAndCurrentSongAction,
 } from "../store/actionCreators";
 import { getSizeImg, getSongPlayer } from "@/utils/format-utils";
-import { parseLyric } from "@/utils/parse-lyric";
 
 import { Slider } from "antd";
 import {
@@ -40,45 +38,27 @@ export default memo(function MHAppPlayerBar() {
   // state
   const [currentTime, setCurrentTime] = useState(0);
   const [progress, SetProgress] = useState(0);
-  const [isDown, setIsDown] = useState(false);
+  const [isDown, setIsDown] = useState(true);
   const [isPlay, setIsPlay] = useState(false);
 
   //redux hooks
-  const { currentSong, songLyric, playList, sequence } = useSelector(
-    (state) => {
-      return {
-        currentSong: state.getIn(["player", "currentSong"]),
-        songLyric: state.getIn(["player", "songLyric"]),
-        playList: state.getIn(["player", "playList"]),
-        sequence: state.getIn(["player", "sequence"]),
-      };
-    },
-    shallowEqual
-  );
+  const { currentSong, playList, sequence } = useSelector((state) => {
+    return {
+      currentSong: state.getIn(["player", "currentSong"]),
+      playList: state.getIn(["player", "playList"]),
+      sequence: state.getIn(["player", "sequence"]),
+    };
+  }, shallowEqual);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSongDetailAction(167876));
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(getSongLyricAction(167876));
-  }, [dispatch]);
-
   // other hooks
   useEffect(() => {
     console.log(currentSong);
   }, [currentSong]);
-
-  // 正则表达式解析歌词
-  const parseLyricResult = useMemo(() => {
-    // 在没请求到数据之前会是空的，不能用split进行分割
-    return parseLyric(songLyric.lyric || "");
-  }, [songLyric]);
-
-  useEffect(() => {
-    dispatch(changeLyricListAction(parseLyricResult));
-  }, [dispatch, songLyric, parseLyricResult]);
 
   const audioRef = useRef();
 
