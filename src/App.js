@@ -1,12 +1,12 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-18 22:17:08
- * @LastEditTime: 2022-10-27 17:25:04
+ * @LastEditTime: 2022-11-02 15:45:43
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\App.js
  * @Description:
  */
-import React, { memo } from "react";
+import React, { memo, Suspense } from "react";
 import { HashRouter } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
 import { Provider } from "react-redux";
@@ -23,7 +23,9 @@ export default memo(function App() {
     <Provider store={store}>
       <HashRouter>
         <MHAppHeader />
-        {renderRoutes(routes)}
+        <Suspense fallback={<div>page loading</div>}>
+          {renderRoutes(routes)}
+        </Suspense>
 
         <hr style={{ color: "#999999", margin: "0" }} />
         <MHAppFooter />
