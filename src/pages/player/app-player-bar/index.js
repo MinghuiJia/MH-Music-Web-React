@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:09
- * @LastEditTime: 2022-11-02 14:55:21
+ * @LastEditTime: 2022-11-02 21:51:01
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\index.js
  * @Description:
@@ -110,7 +110,7 @@ export default memo(function MHAppPlayerBar() {
 
       message.open({
         key: "currentLyric",
-        content: lyricList[i - 1].content,
+        content: lyricList[i - 1] && lyricList[i - 1].content,
         duration: 0,
         className: "current-lyric-show",
       });

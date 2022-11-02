@@ -49,7 +49,7 @@ export default memo(function MHRankingColumn(props) {
         </div>
       </div>
       <div className="ranking-content">
-        {tracks !== undefined &&
+        {tracks  &&
           tracks.map((item, index) => {
             return (
               index < 10 && (
