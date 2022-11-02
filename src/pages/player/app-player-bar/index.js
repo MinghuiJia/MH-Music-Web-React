@@ -1,27 +1,20 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:09
- * @LastEditTime: 2022-11-01 22:07:45
+ * @LastEditTime: 2022-11-02 14:55:21
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\index.js
  * @Description:
  */
-import React, {
-  memo,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  useMemo,
-} from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 
 import {
   getSongDetailAction,
-  getSongLyricAction,
   changeSequenceAction,
   changeCurrenSongIndexAndCurrentSongAction,
+  changeCurrentLyricIndexAction,
 } from "../store/actionCreators";
 import { getSizeImg, getSongPlayer } from "@/utils/format-utils";
 
@@ -33,6 +26,7 @@ import {
   RightControl,
 } from "./style";
 import { NavLink } from "react-router-dom";
+import { message } from "antd";
 
 export default memo(function MHAppPlayerBar() {
   // state
@@ -42,13 +36,16 @@ export default memo(function MHAppPlayerBar() {
   const [isPlay, setIsPlay] = useState(false);
 
   //redux hooks
-  const { currentSong, playList, sequence } = useSelector((state) => {
-    return {
-      currentSong: state.getIn(["player", "currentSong"]),
-      playList: state.getIn(["player", "playList"]),
-      sequence: state.getIn(["player", "sequence"]),
-    };
-  }, shallowEqual);
+  const { currentSong, playList, sequence, lyricList, currentLyricIndex } =
+    useSelector((state) => {
+      return {
+        currentSong: state.getIn(["player", "currentSong"]),
+        playList: state.getIn(["player", "playList"]),
+        sequence: state.getIn(["player", "sequence"]),
+        lyricList: state.getIn(["player", "lyricList"]),
+        currentLyricIndex: state.getIn(["player", "currentLyricIndex"]),
+      };
+    }, shallowEqual);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -98,6 +95,26 @@ export default memo(function MHAppPlayerBar() {
     // *1000变为毫秒
     if (isDown === true) SetProgress(currentTime);
     setCurrentTime(e.target.currentTime * 1000);
+
+    // 简单显示歌词
+    const currTime = e.target.currentTime * 1000;
+    let i = 0;
+    for (; i < lyricList.length; i++) {
+      if (currTime < lyricList[i].time) {
+        break;
+      }
+    }
+    if (currentLyricIndex !== i - 1) {
+      console.log(lyricList[i - 1]);
+      dispatch(changeCurrentLyricIndexAction(i - 1));
+
+      message.open({
+        key: "currentLyric",
+        content: lyricList[i - 1].content,
+        duration: 0,
+        className: "current-lyric-show",
+      });
+    }
   };
 
   const changeMusic = (tag) => {
