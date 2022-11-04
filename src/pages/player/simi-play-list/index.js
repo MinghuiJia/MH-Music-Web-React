@@ -1,31 +1,26 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-28 18:58:26
- * @LastEditTime: 2022-10-28 20:01:18
+ * @LastEditTime: 2022-11-04 15:21:09
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\simi-play-list\index.js
  * @Description:
  */
-import React, { memo, useEffect } from "react";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import React, { memo } from "react";
+import { shallowEqual, useSelector } from "react-redux";
 
-import { getSimiPlayListAction } from "../store/actionCreators";
 import { getSizeImg } from "@/utils/format-utils";
 
 import { MHSimiPlayListWrapper } from "./style";
 
 export default memo(function MHSimiPlayList(props) {
-  const { id } = props;
+  // const { id } = props;
   //redux hooks
   const { simiPlayList = [] } = useSelector((state) => {
     return {
       simiPlayList: state.getIn(["player", "simiPlayList"]),
     };
   }, shallowEqual);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getSimiPlayListAction(id));
-  }, [dispatch, id]);
   return (
     <MHSimiPlayListWrapper>
       <div className="simi-play-list-top">

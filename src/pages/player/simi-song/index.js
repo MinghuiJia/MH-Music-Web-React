@@ -1,30 +1,25 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-28 20:04:32
- * @LastEditTime: 2022-10-28 20:55:19
+ * @LastEditTime: 2022-11-04 15:21:17
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\simi-song\index.js
  * @Description:
  */
-import React, { memo, useEffect } from "react";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
-
-import { getSimiSongAction } from "../store/actionCreators";
+import React, { memo } from "react";
+import { shallowEqual, useSelector } from "react-redux";
 
 import { MHSimiSongWrapper } from "./style";
 
 export default memo(function MHSimiSong(props) {
-  const { id } = props;
+  // const { id } = props;
   // redux hooks
   const { simiSong = [] } = useSelector((state) => {
     return {
       simiSong: state.getIn(["player", "simiSong"]),
     };
   }, shallowEqual);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getSimiSongAction(id));
-  }, [dispatch, id]);
+
   return (
     <MHSimiSongWrapper>
       <div className="simi-song-list-top">

@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 21:02:11
- * @LastEditTime: 2022-11-02 14:41:00
+ * @LastEditTime: 2022-11-04 15:15:17
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\store\actionCreators.js
  * @Description:
@@ -97,6 +97,10 @@ export const changeCurrenSongIndexAndCurrentSongAction = (tag) => {
     dispatch(changeCurrentSongAction(currentSong));
     // 当进行切歌时，也需要获取歌词
     dispatch(getSongLyricAction(currentSong.id));
+    // 请求相似歌单
+    dispatch(getSimiSongAction(currentSong.id));
+    // 请求相似歌曲
+    dispatch(getSimiPlayListAction(currentSong.id));
   };
 };
 
@@ -112,6 +116,10 @@ export const getSongDetailAction = (ids) => {
       dispatch(changeCurrentSongAction(playList[songIndex]));
       // 请求歌曲详细信息时也要请求相应的歌词
       dispatch(getSongLyricAction(playList[songIndex].id));
+      // 请求相似歌单
+      dispatch(getSimiSongAction(playList[songIndex].id));
+      // 请求相似歌曲
+      dispatch(getSimiPlayListAction(playList[songIndex].id));
     } // 表示当前点击的歌曲不在列表中
     else {
       getSongDetail(ids).then((res) => {
@@ -127,6 +135,10 @@ export const getSongDetailAction = (ids) => {
         dispatch(changeCurrentSongIndexAction(newPlayList.length - 1));
         // 请求歌曲详细信息时也要请求相应的歌词
         dispatch(getSongLyricAction(song.id));
+        // 请求相似歌单
+        dispatch(getSimiSongAction(playList[songIndex].id));
+        // 请求相似歌曲
+        dispatch(getSimiPlayListAction(playList[songIndex].id));
       });
     }
   };
