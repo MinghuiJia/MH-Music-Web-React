@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:09
- * @LastEditTime: 2022-11-02 21:51:01
+ * @LastEditTime: 2022-11-04 21:37:37
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\index.js
  * @Description:
@@ -15,6 +15,7 @@ import {
   changeSequenceAction,
   changeCurrenSongIndexAndCurrentSongAction,
   changeCurrentLyricIndexAction,
+  changePlayListFlagAction,
 } from "../store/actionCreators";
 import { getSizeImg, getSongPlayer } from "@/utils/format-utils";
 
@@ -36,16 +37,23 @@ export default memo(function MHAppPlayerBar() {
   const [isPlay, setIsPlay] = useState(false);
 
   //redux hooks
-  const { currentSong, playList, sequence, lyricList, currentLyricIndex } =
-    useSelector((state) => {
-      return {
-        currentSong: state.getIn(["player", "currentSong"]),
-        playList: state.getIn(["player", "playList"]),
-        sequence: state.getIn(["player", "sequence"]),
-        lyricList: state.getIn(["player", "lyricList"]),
-        currentLyricIndex: state.getIn(["player", "currentLyricIndex"]),
-      };
-    }, shallowEqual);
+  const {
+    currentSong,
+    playList,
+    sequence,
+    lyricList,
+    currentLyricIndex,
+    playListFlag,
+  } = useSelector((state) => {
+    return {
+      currentSong: state.getIn(["player", "currentSong"]),
+      playList: state.getIn(["player", "playList"]),
+      sequence: state.getIn(["player", "sequence"]),
+      lyricList: state.getIn(["player", "lyricList"]),
+      currentLyricIndex: state.getIn(["player", "currentLyricIndex"]),
+      playListFlag: state.getIn(["player", "playListFlag"]),
+    };
+  }, shallowEqual);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -104,7 +112,9 @@ export default memo(function MHAppPlayerBar() {
         break;
       }
     }
+    
     if (currentLyricIndex !== i - 1) {
+      
       console.log(lyricList[i - 1]);
       dispatch(changeCurrentLyricIndexAction(i - 1));
 
@@ -155,6 +165,10 @@ export default memo(function MHAppPlayerBar() {
       newSequence = 0;
     }
     dispatch(changeSequenceAction(newSequence));
+  };
+
+  const handlePlayListFlag = () => {
+    dispatch(changePlayListFlagAction(!playListFlag));
   };
 
   return (
@@ -233,8 +247,11 @@ export default memo(function MHAppPlayerBar() {
               className="loop sprite_player icon"
               onClick={(e) => changeSequence()}
             ></div>
-            <div className="menu sprite_player">
-              <a href="goto">{playList.length}</a>
+            <div
+              className="menu sprite_player"
+              onClick={(e) => handlePlayListFlag()}
+            >
+              <a>{playList.length}</a>
             </div>
           </div>
         </RightControl>

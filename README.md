@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+<!--
+ * @Author: jiaminghui
+ * @Date: 2022-10-18 22:12:48
+ * @LastEditTime: 2022-11-04 21:59:42
+ * @LastEditors: jiaminghui
+ * @FilePath: \mh-music-web-react\README.md
+ * @Description: 
+-->
+# 仿网易云音乐web
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 项目依赖
+- 项目基于React框架编写
+- 本项目需要网易云API服务：https://github.com/Binaryify/NeteaseCloudMusicApi. **当前使用版本v3.32.2，有些版本的API接口发生变化会导致项目运行失败**
 
-## Available Scripts
+## 当前完成的项目功能
 
-In the project directory, you can run:
+### 发现音乐——推荐页
 
-### `npm start`
+- 轮播图
+![](./readme_pic/recommend-banner.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 热门推荐
+![](./readme_pic/recommend-hot.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 新碟上架
+![](./readme_pic/recommend-newAlbum.png)
 
-### `npm test`
+- 榜单
+![](./readme_pic/recommend-ranking.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 歌曲详情(相似歌单、相似歌曲)
+![](./readme_pic/sing-info.png)
 
-### `npm run build`
+- 播放栏
+![](./readme_pic/player-bar.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 播放列表
+![](./readme_pic/player-list.png)

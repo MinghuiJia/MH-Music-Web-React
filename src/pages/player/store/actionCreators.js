@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 21:02:11
- * @LastEditTime: 2022-11-04 15:15:17
+ * @LastEditTime: 2022-11-04 21:11:00
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\store\actionCreators.js
  * @Description:
@@ -70,6 +70,13 @@ export const changeCurrentLyricIndexAction = (index) => {
   return {
     type: actionTypes.CHANGE_CURRENT_LYRIC_INDEX,
     index,
+  };
+};
+
+export const changePlayListFlagAction = (flag) => {
+  return {
+    type: actionTypes.CHANGE_PLAY_LIST_FLAG,
+    flag,
   };
 };
 
