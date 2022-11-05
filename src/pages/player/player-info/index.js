@@ -1,23 +1,25 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-28 15:34:42
- * @LastEditTime: 2022-10-30 21:43:37
+ * @LastEditTime: 2022-11-05 22:24:22
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\player-info\index.js
  * @Description:
  */
 import React, { memo, useState } from "react";
-import { shallowEqual, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { getSizeImg } from "@/utils/format-utils";
+import { getSizeImg, getSongPlayer } from "@/utils/format-utils";
+import { changeIsPlayAction } from "../store/actionCreators";
 
 import { MHPlayerInfoWrapper } from "./style";
 
 export default memo(function MHPlayerInfo(props) {
-  // const { id } = props;
+  const { audioRef } = props;
   const [extended, setExtended] = useState(false);
 
   // redux hooks
+  const dispatch = useDispatch();
   const { lyricList = [], currentSong = {} } = useSelector((state) => {
     return {
       lyricList: state.getIn(["player", "lyricList"]),
@@ -25,6 +27,19 @@ export default memo(function MHPlayerInfo(props) {
     };
   }, shallowEqual);
   console.log(lyricList);
+
+  const playMusic = (id) => {
+    audioRef.current.src = getSongPlayer(currentSong.id);
+    // 这个play返回的是一个promise，因为在第一次加载时audio并不会播放，同时有些音乐没版权
+    audioRef.current
+      .play()
+      .then((res) => {
+        dispatch(changeIsPlayAction(true));
+      })
+      .catch((err) => {
+        dispatch(changeIsPlayAction(false));
+      });
+  };
   const alPicUrl = currentSong.al && currentSong.al.picUrl;
   const arName = currentSong.ar && currentSong.ar[0] && currentSong.ar[0].name;
   const alName = currentSong.al && currentSong.al.name;
@@ -33,10 +48,7 @@ export default memo(function MHPlayerInfo(props) {
     <MHPlayerInfoWrapper extended={extended}>
       <div className="content-left">
         <div className="pic-bg sprite_covor">
-          <img
-            src={getSizeImg(alPicUrl, 130)}
-            alt=""
-          ></img>
+          <img src={getSizeImg(alPicUrl, 130)} alt=""></img>
         </div>
         <div className="outer-player">
           <i className="sprite_icon2"></i>
@@ -59,7 +71,7 @@ export default memo(function MHPlayerInfo(props) {
           </div>
         </div>
         <div className="info-tool">
-          <button className="play">
+          <button className="play" onClick={(e) => playMusic(currentSong.id)}>
             <i className="sprite_button"></i>
             <span>播放</span>
           </button>

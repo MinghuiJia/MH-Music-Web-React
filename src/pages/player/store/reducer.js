@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 21:01:59
- * @LastEditTime: 2022-11-04 21:38:45
+ * @LastEditTime: 2022-11-05 22:14:40
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\store\reducer.js
  * @Description:
@@ -414,7 +414,8 @@ const initState = Map({
   simiSong: [],
   lyricList: [],
   currentLyricIndex: -1,
-  playListFlag: false,
+  playListFlag: false, // 识别播放列表是否打开的
+  isPlay: false,
 });
 
 const reducer = (state = initState, action) => {
@@ -437,6 +438,8 @@ const reducer = (state = initState, action) => {
       return state.set("currentLyricIndex", action.index);
     case actionTypes.CHANGE_PLAY_LIST_FLAG:
       return state.set("playListFlag", action.flag);
+    case actionTypes.CHANGE_IS_PLAY:
+      return state.set("isPlay", action.flag);
     default:
       return state;
   }

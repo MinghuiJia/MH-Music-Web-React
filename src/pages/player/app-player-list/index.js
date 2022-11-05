@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-04 15:42:08
- * @LastEditTime: 2022-11-04 21:22:17
+ * @LastEditTime: 2022-11-05 21:32:36
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-list\index.js
  * @Description:
@@ -10,7 +10,10 @@ import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 
-import { changePlayListFlagAction } from "../store/actionCreators";
+import {
+  changePlayListFlagAction,
+  getSongDetailAction,
+} from "../store/actionCreators";
 
 import {
   MHAppPlayerListWrapper,
@@ -59,6 +62,10 @@ export default memo(function MHAppPlayerList() {
     dispatch(changePlayListFlagAction(!playListFlag));
   };
 
+  const playMusic = (item) => {
+    dispatch(getSongDetailAction(item.id));
+  };
+
   return (
     <MHAppPlayerListWrapper showFlag={playListFlag}>
       <MHAppPlayerListHeader>
@@ -91,7 +98,11 @@ export default memo(function MHAppPlayerList() {
             const song_artist = item.ar && item.ar[0] && item.ar[0].name;
             const song_duration = item.dt;
             return (
-              <div className="play-list-item" key={item.id}>
+              <div
+                className="play-list-item"
+                key={item.id}
+                onClick={(e) => playMusic(item)}
+              >
                 <div className="item-left">
                   <i
                     className={
@@ -99,7 +110,7 @@ export default memo(function MHAppPlayerList() {
                       (index === currentSongIndex ? " active" : "")
                     }
                   ></i>
-                  <span className="song-name">{song_name}</span>
+                  <span className="song-name text-nowrap">{song_name}</span>
                 </div>
                 <div className="item-right">
                   <div className="song-tools">

@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:09
- * @LastEditTime: 2022-11-04 21:37:37
+ * @LastEditTime: 2022-11-05 22:24:31
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\index.js
  * @Description:
@@ -16,6 +16,7 @@ import {
   changeCurrenSongIndexAndCurrentSongAction,
   changeCurrentLyricIndexAction,
   changePlayListFlagAction,
+  changeIsPlayAction,
 } from "../store/actionCreators";
 import { getSizeImg, getSongPlayer } from "@/utils/format-utils";
 
@@ -34,7 +35,6 @@ export default memo(function MHAppPlayerBar() {
   const [currentTime, setCurrentTime] = useState(0);
   const [progress, SetProgress] = useState(0);
   const [isDown, setIsDown] = useState(true);
-  const [isPlay, setIsPlay] = useState(false);
 
   //redux hooks
   const {
@@ -44,6 +44,7 @@ export default memo(function MHAppPlayerBar() {
     lyricList,
     currentLyricIndex,
     playListFlag,
+    isPlay,
   } = useSelector((state) => {
     return {
       currentSong: state.getIn(["player", "currentSong"]),
@@ -52,6 +53,7 @@ export default memo(function MHAppPlayerBar() {
       lyricList: state.getIn(["player", "lyricList"]),
       currentLyricIndex: state.getIn(["player", "currentLyricIndex"]),
       playListFlag: state.getIn(["player", "playListFlag"]),
+      isPlay: state.getIn(["player", "isPlay"]),
     };
   }, shallowEqual);
 
@@ -80,23 +82,23 @@ export default memo(function MHAppPlayerBar() {
     audioRef.current
       .play()
       .then((res) => {
-        setIsPlay(true);
+        dispatch(changeIsPlayAction(true));
       })
       .catch((err) => {
-        setIsPlay(false);
+        dispatch(changeIsPlayAction(false));
       });
-  }, [currentSong]);
+  }, [currentSong, dispatch]);
 
   const playMusic = useCallback(
     (currTime) => {
-      setIsPlay(!isPlay);
+      dispatch(changeIsPlayAction(!isPlay))
       if (isPlay) {
         audioRef.current.pause();
       } else {
         audioRef.current.play();
       }
     },
-    [isPlay]
+    [isPlay, dispatch]
   );
 
   const changeCurrentTime = (e) => {
@@ -112,9 +114,8 @@ export default memo(function MHAppPlayerBar() {
         break;
       }
     }
-    
+
     if (currentLyricIndex !== i - 1) {
-      
       console.log(lyricList[i - 1]);
       dispatch(changeCurrentLyricIndexAction(i - 1));
 
@@ -192,7 +193,13 @@ export default memo(function MHAppPlayerBar() {
         </LeftControl>
         <Player>
           <div className="song-image">
-            <NavLink to={`/discover/player?id=${currentSong.id}`}>
+            <NavLink
+              to={{
+                pathname: "/discover/player",
+                search: `?id=${currentSong.id}`,
+                state: audioRef,
+              }}
+            >
               <img src={getSizeImg(picUrl, 34)} alt=""></img>
             </NavLink>
           </div>

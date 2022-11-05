@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-04 15:42:11
- * @LastEditTime: 2022-11-04 21:17:03
+ * @LastEditTime: 2022-11-05 21:34:36
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-list\style.js
  * @Description:
@@ -166,6 +166,7 @@ export const MHAppPlayerListContent = styled.div`
         .song-name {
           display: inline-block;
           color: #ccc;
+          width: 250px;
         }
       }
 
