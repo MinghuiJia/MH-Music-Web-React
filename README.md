@@ -1,7 +1,7 @@
 <!--
  * @Author: jiaminghui
  * @Date: 2022-10-18 22:12:48
- * @LastEditTime: 2022-11-04 21:59:42
+ * @LastEditTime: 2022-11-07 14:12:48
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\README.md
  * @Description: 
@@ -10,7 +10,7 @@
 
 ## 项目依赖
 - 项目基于React框架编写
-- 本项目需要网易云API服务：https://github.com/Binaryify/NeteaseCloudMusicApi. **当前使用版本v3.32.2，有些版本的API接口发生变化会导致项目运行失败**
+- 本项目需要网易云API服务：https://github.com/Binaryify/NeteaseCloudMusicApi. **当前使用版本v2.23.0，有些版本的API接口发生变化会导致项目运行失败**
 
 ## 当前完成的项目功能
 
