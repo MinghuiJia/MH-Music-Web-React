@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-18 22:17:08
- * @LastEditTime: 2022-11-07 15:59:33
+ * @LastEditTime: 2022-11-07 16:17:28
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\App.js
  * @Description:
@@ -23,7 +23,6 @@ export default memo(function App() {
   return (
     <Provider store={store}>
       <HashRouter>
-        <h2>哈哈哈哈</h2>
         <MHAppHeader />
         <Suspense fallback={<div>page loading</div>}>
           {renderRoutes(routes)}
