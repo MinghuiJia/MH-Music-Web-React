@@ -1,7 +1,7 @@
 <!--
  * @Author: jiaminghui
  * @Date: 2022-10-18 22:12:48
- * @LastEditTime: 2022-11-07 14:12:48
+ * @LastEditTime: 2022-11-07 15:28:01
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\README.md
  * @Description: 
@@ -11,6 +11,21 @@
 ## 项目依赖
 - 项目基于React框架编写
 - 本项目需要网易云API服务：https://github.com/Binaryify/NeteaseCloudMusicApi. **当前使用版本v2.23.0，有些版本的API接口发生变化会导致项目运行失败**
+
+## 项目自动化部署（jenkins）
+- 安装`OpenJDK 11`-java环境：https://zhuanlan.zhihu.com/p/393172181
+- 安装jenkins环境：https://www.jianshu.com/p/37b0fce69520
+- 配置Git管理
+    - 安装git plugin插件
+    - 云服务器生成git密钥-公钥私钥
+    - 公钥在github设置，测试ssh是否通过
+    - 私钥在jenkins项目中配置（Credentials设置采用SSH Username with private key），key就是服务器生成的私钥
+    - 配置jenkins中全局工具配置中的Git部分，设置Name（Github用户名）和Path（服务器上git的位置）
+- jenkins上安装Node插件
+- 配置全局工具配置中的NodeJS安装，别名随便起，目录是服务器上node安装地址（到bin文件夹，同时避免安装在root下没有权限）
+- 新建Item的配置中，不要勾选构建环境中的`Provide Node & npm bin/ folder to PATH`，否则会报关于node文件夹下没有可执行的
+**注意：react项目中，不能报eslint的警告，不然jenkins打包项目时会报错，会自动将warn转成成错误**
+
 
 ## 当前完成的项目功能
 
