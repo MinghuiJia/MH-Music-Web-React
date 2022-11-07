@@ -1,7 +1,7 @@
 <!--
  * @Author: jiaminghui
  * @Date: 2022-10-18 22:12:48
- * @LastEditTime: 2022-11-07 15:28:01
+ * @LastEditTime: 2022-11-07 15:59:14
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\README.md
  * @Description: 
@@ -24,6 +24,8 @@
 - jenkins上安装Node插件
 - 配置全局工具配置中的NodeJS安装，别名随便起，目录是服务器上node安装地址（到bin文件夹，同时避免安装在root下没有权限）
 - 新建Item的配置中，不要勾选构建环境中的`Provide Node & npm bin/ folder to PATH`，否则会报关于node文件夹下没有可执行的
+- 安装Publish Over SSH插件，并在系统配置中添加SSH Servers（注意需要设置密码）
+- 在Item的配置中，配置构建后操作
 **注意：react项目中，不能报eslint的警告，不然jenkins打包项目时会报错，会自动将warn转成成错误**
 
 
