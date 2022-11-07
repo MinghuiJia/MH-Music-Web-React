@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:20
- * @LastEditTime: 2022-10-30 22:28:41
+ * @LastEditTime: 2022-11-07 15:04:47
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\style.js
  * @Description:
@@ -229,6 +229,11 @@ export const RightControl = styled.div`
       align-items: center;
       justify-content: center;
       margin: 11px 2px 0 0;
+      cursor: pointer;
+      span {
+        color: #ccc;
+        margin-left: 15px;
+      }
       &:hover {
         background-position: -42px -98px;
       }

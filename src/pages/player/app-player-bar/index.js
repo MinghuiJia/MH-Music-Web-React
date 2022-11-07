@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:09
- * @LastEditTime: 2022-11-05 22:24:31
+ * @LastEditTime: 2022-11-07 15:02:06
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\index.js
  * @Description:
@@ -258,7 +258,7 @@ export default memo(function MHAppPlayerBar() {
               className="menu sprite_player"
               onClick={(e) => handlePlayListFlag()}
             >
-              <a>{playList.length}</a>
+              <span>{playList.length}</span>
             </div>
           </div>
         </RightControl>
