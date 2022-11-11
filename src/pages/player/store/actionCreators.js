@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 21:02:11
- * @LastEditTime: 2022-11-11 14:17:58
+ * @LastEditTime: 2022-11-11 17:57:15
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\store\actionCreators.js
  * @Description:
@@ -150,11 +150,11 @@ export const getSongDetailAction = (ids) => {
         // 请求歌曲详细信息时也要请求相应的歌词
         dispatch(getSongLyricAction(song.id));
 
-        if (playList[songIndex]) {
+        if (song) {
           // 请求相似歌单
-          dispatch(getSimiSongAction(playList[songIndex].id));
+          dispatch(getSimiSongAction(song.id));
           // 请求相似歌曲
-          dispatch(getSimiPlayListAction(playList[songIndex].id));
+          dispatch(getSimiPlayListAction(song.id));
         }
       });
     }
