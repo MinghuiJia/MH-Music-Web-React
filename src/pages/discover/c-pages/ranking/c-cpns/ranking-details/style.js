@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-10 17:35:12
- * @LastEditTime: 2022-11-11 13:21:58
+ * @LastEditTime: 2022-11-11 21:09:45
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\ranking\c-cpns\ranking-details\style.js
  * @Description:
@@ -356,6 +356,9 @@ export const MHRankingDetailsWrapper = styled.div`
                   cursor: pointer;
                   background-position: 0 -128px;
                 }
+                &.active {
+                  background-position: -20px -128px;
+                }
               }
               .song-name {
                 color: #333;
@@ -378,6 +381,9 @@ export const MHRankingDetailsWrapper = styled.div`
                 &:hover {
                   cursor: pointer;
                   background-position: 0 -128px;
+                }
+                &.active {
+                  background-position: -20px -128px;
                 }
               }
             }

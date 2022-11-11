@@ -1,14 +1,14 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-10 17:34:29
- * @LastEditTime: 2022-11-11 17:39:35
+ * @LastEditTime: 2022-11-11 21:10:51
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\ranking\c-cpns\ranking-details\index.js
  * @Description:
  */
 import React, { memo } from "react";
 import moment from "moment";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getSizeImg } from "@/utils/format-utils";
 import { getSongDetailAction } from "@/pages/player/store/actionCreators";
@@ -21,6 +21,11 @@ export default memo(function MHRankingDetails(props) {
 
   // redux hooks
   const dispatch = useDispatch();
+  const { currentSongIndex } = useSelector((state) => {
+    return {
+      currentSongIndex: state.getIn(["player", "currentSongIndex"]),
+    };
+  });
   const playMusic = (item) => {
     if (item.id) dispatch(getSongDetailAction(item.id));
   };
@@ -82,8 +87,8 @@ export default memo(function MHRankingDetails(props) {
             <span className="content-name">歌曲列表</span>
             <span className="content-song-count">
               {rankingList.tracks &&
-                (rankingList.tracks.length > 100
-                  ? "100"
+                (rankingList.tracks.length > 20
+                  ? "20"
                   : rankingList.tracks.length)}
               首歌
             </span>
@@ -125,7 +130,10 @@ export default memo(function MHRankingDetails(props) {
                                 alt=""
                               />
                               <i
-                                className="play-icon sprite_table"
+                                className={
+                                  "play-icon sprite_table" +
+                                  (currentSongIndex === index ? " active" : "")
+                                }
                                 onClick={(e) => playMusic(item)}
                               ></i>
                               <a className="song-name" href="goto">
@@ -170,7 +178,10 @@ export default memo(function MHRankingDetails(props) {
                           <td className="info">
                             <div className="text-nowrap">
                               <i
-                                className="play-icon sprite_table"
+                                className={
+                                  "play-icon sprite_table" +
+                                  (currentSongIndex === index ? " active" : "")
+                                }
                                 onClick={(e) => playMusic(item)}
                               ></i>
                               <a className="song-name" href="goto">
