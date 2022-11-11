@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-27 17:19:09
- * @LastEditTime: 2022-11-07 15:02:06
+ * @LastEditTime: 2022-11-11 14:17:30
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\player\app-player-bar\index.js
  * @Description:
@@ -91,7 +91,7 @@ export default memo(function MHAppPlayerBar() {
 
   const playMusic = useCallback(
     (currTime) => {
-      dispatch(changeIsPlayAction(!isPlay))
+      dispatch(changeIsPlayAction(!isPlay));
       if (isPlay) {
         audioRef.current.pause();
       } else {

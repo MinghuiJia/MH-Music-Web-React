@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-10 17:35:12
- * @LastEditTime: 2022-11-10 22:46:42
+ * @LastEditTime: 2022-11-11 13:21:58
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\ranking\c-cpns\ranking-details\style.js
  * @Description:
@@ -228,6 +228,10 @@ export const MHRankingDetailsWrapper = styled.div`
           }
         }
         tbody {
+          border: 1px solid #d9d9d9;
+          tr:nth-child(2n) {
+            background-color: #fff;
+          }
           tr {
             position: relative;
             &:hover .duration {

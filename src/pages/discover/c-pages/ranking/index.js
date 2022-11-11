@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-19 21:56:49
- * @LastEditTime: 2022-11-10 19:44:06
+ * @LastEditTime: 2022-11-11 13:50:52
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\ranking\index.js
  * @Description:
@@ -37,6 +37,9 @@ export default memo(function MHRanking() {
   const changeRankingIdx = useCallback((newIdx) => {
     setRankingIdx(newIdx);
   }, []);
+
+  // 排行榜的歌曲排名上升下降或新歌需要基于前一天数据，这里暂时无法获取到前一天数据因此暂时无法进行对比
+
   return (
     <MHRankingWrapper className="wrap-v2">
       <div className="ranking-menu-list">

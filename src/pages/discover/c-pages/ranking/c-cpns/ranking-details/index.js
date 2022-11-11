@@ -1,20 +1,39 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-10 17:34:29
- * @LastEditTime: 2022-11-10 22:38:20
+ * @LastEditTime: 2022-11-11 17:39:35
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\ranking\c-cpns\ranking-details\index.js
  * @Description:
  */
 import React, { memo } from "react";
+import moment from "moment";
+import { useDispatch } from "react-redux";
 
 import { getSizeImg } from "@/utils/format-utils";
-import moment from "moment";
+import { getSongDetailAction } from "@/pages/player/store/actionCreators";
+import { changePlayListRankingAction } from "../../store/actionCreators";
 
 import { MHRankingDetailsWrapper } from "./style";
 
 export default memo(function MHRankingDetails(props) {
   const { rankingList } = props;
+
+  // redux hooks
+  const dispatch = useDispatch();
+  const playMusic = (item) => {
+    if (item.id) dispatch(getSongDetailAction(item.id));
+  };
+
+  const sequencePlay = () => {
+    dispatch(
+      changePlayListRankingAction(
+        rankingList.tracks &&
+          rankingList.tracks.filter((item, index) => index < 20)
+      )
+    );
+  };
+
   return (
     <MHRankingDetailsWrapper>
       <div className="detail-top">
@@ -31,7 +50,7 @@ export default memo(function MHRankingDetails(props) {
             </span>
           </div>
           <div className="info-tool">
-            <button className="play">
+            <button className="play" onClick={(e) => sequencePlay()}>
               <i className="sprite_button"></i>
               <span>播放</span>
             </button>
@@ -88,11 +107,11 @@ export default memo(function MHRankingDetails(props) {
             <tbody>
               {rankingList.tracks &&
                 rankingList.tracks
-                  .filter((item, index) => index < 100)
+                  .filter((item, index) => index < 20)
                   .map((item, index) => {
                     if (index < 3) {
                       return (
-                        <tr key={item.id} className="top3-ranking">
+                        <tr key={item.id + item.name} className="top3-ranking">
                           <td className="id">
                             <div className="id-content">
                               <span>{index + 1}</span>
@@ -105,7 +124,10 @@ export default memo(function MHRankingDetails(props) {
                                 src={getSizeImg(item.al.picUrl, 50)}
                                 alt=""
                               />
-                              <i className="play-icon sprite_table"></i>
+                              <i
+                                className="play-icon sprite_table"
+                                onClick={(e) => playMusic(item)}
+                              ></i>
                               <a className="song-name" href="goto">
                                 {item.name}
                               </a>
@@ -126,7 +148,7 @@ export default memo(function MHRankingDetails(props) {
                             <div className="text-nowrap">
                               {item.ar.map((iten, indey, arr) => {
                                 return (
-                                  <a key={iten.id} href="goto">
+                                  <a key={iten.id + iten.name} href="goto">
                                     {iten.name +
                                       (indey === arr.length - 1 ? "" : "/")}
                                   </a>
@@ -138,7 +160,7 @@ export default memo(function MHRankingDetails(props) {
                       );
                     } else {
                       return (
-                        <tr key={item.id} className="rest-ranking">
+                        <tr key={item.id + item.name} className="rest-ranking">
                           <td className="id">
                             <div className="id-content">
                               <span>{index + 1}</span>
@@ -147,7 +169,10 @@ export default memo(function MHRankingDetails(props) {
                           </td>
                           <td className="info">
                             <div className="text-nowrap">
-                              <i className="play-icon sprite_table"></i>
+                              <i
+                                className="play-icon sprite_table"
+                                onClick={(e) => playMusic(item)}
+                              ></i>
                               <a className="song-name" href="goto">
                                 {item.name}
                               </a>
@@ -168,7 +193,7 @@ export default memo(function MHRankingDetails(props) {
                             <div className="text-nowrap">
                               {item.ar.map((iten, indey, arr) => {
                                 return (
-                                  <a key={iten.id} href="goto">
+                                  <a key={iten.id + iten.name} href="goto">
                                     {iten.name +
                                       (indey === arr.length - 1 ? "" : "/")}
                                   </a>
