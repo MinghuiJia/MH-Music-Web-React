@@ -1,12 +1,12 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-10 17:34:29
- * @LastEditTime: 2022-11-11 21:10:51
+ * @LastEditTime: 2022-11-11 21:45:27
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\ranking\c-cpns\ranking-details\index.js
  * @Description:
  */
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,16 +18,21 @@ import { MHRankingDetailsWrapper } from "./style";
 
 export default memo(function MHRankingDetails(props) {
   const { rankingList } = props;
+  // state
+  const [isPlay, setIsPlay] = useState(false);
 
   // redux hooks
   const dispatch = useDispatch();
-  const { currentSongIndex } = useSelector((state) => {
+  const { currentSong } = useSelector((state) => {
     return {
-      currentSongIndex: state.getIn(["player", "currentSongIndex"]),
+      currentSong: state.getIn(["player", "currentSong"]),
     };
   });
   const playMusic = (item) => {
-    if (item.id) dispatch(getSongDetailAction(item.id));
+    if (item.id) {
+      dispatch(getSongDetailAction(item.id));
+      setIsPlay(true);
+    }
   };
 
   const sequencePlay = () => {
@@ -37,6 +42,7 @@ export default memo(function MHRankingDetails(props) {
           rankingList.tracks.filter((item, index) => index < 20)
       )
     );
+    setIsPlay(true);
   };
 
   return (
@@ -132,7 +138,9 @@ export default memo(function MHRankingDetails(props) {
                               <i
                                 className={
                                   "play-icon sprite_table" +
-                                  (currentSongIndex === index ? " active" : "")
+                                  (isPlay && currentSong.id === item.id
+                                    ? " active"
+                                    : "")
                                 }
                                 onClick={(e) => playMusic(item)}
                               ></i>
@@ -180,7 +188,9 @@ export default memo(function MHRankingDetails(props) {
                               <i
                                 className={
                                   "play-icon sprite_table" +
-                                  (currentSongIndex === index ? " active" : "")
+                                  (isPlay && currentSong.id === item.id
+                                    ? " active"
+                                    : "")
                                 }
                                 onClick={(e) => playMusic(item)}
                               ></i>
