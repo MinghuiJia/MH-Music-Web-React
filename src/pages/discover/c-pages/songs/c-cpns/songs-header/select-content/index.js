@@ -1,15 +1,15 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-12 16:15:24
- * @LastEditTime: 2022-11-12 20:50:35
+ * @LastEditTime: 2022-11-12 22:30:59
  * @LastEditors: jiaminghui
- * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\songs\c-cpns\select-content\index.js
+ * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\songs\c-cpns\songs-header\select-content\index.js
  * @Description:
  */
 import React, { memo, useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { getPlayListCategoryAction } from "../../store/actionCreators";
+import { getPlayListCategoryAction } from "../../../store/actionCreators";
 
 import { MHSelectContentWrapper } from "./style";
 

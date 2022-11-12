@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-12 14:23:31
- * @LastEditTime: 2022-11-12 21:09:39
+ * @LastEditTime: 2022-11-12 22:30:21
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\songs\c-cpns\songs-header\index.js
  * @Description:
@@ -10,7 +10,7 @@ import React, { memo } from "react";
 
 import { MHSongsHeaderWrapper } from "./style";
 import MHSelectTitle from "./select-title";
-import MHSelectContent from "../select-content";
+import MHSelectContent from './select-content'
 import { Button, Popover } from "antd";
 
 export default memo(function MHSongsHeader() {
