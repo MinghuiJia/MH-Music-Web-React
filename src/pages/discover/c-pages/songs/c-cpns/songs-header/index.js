@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-12 14:23:31
- * @LastEditTime: 2022-11-13 15:22:09
+ * @LastEditTime: 2022-11-13 16:14:57
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\songs\c-cpns\songs-header\index.js
  * @Description:
@@ -9,7 +9,10 @@
 import React, { memo } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { getOnePlayListAction } from "../../store/actionCreators";
+import {
+  getOnePlayListAction,
+  changeCurrentPageNumAction,
+} from "../../store/actionCreators";
 
 import { MHSongsHeaderWrapper } from "./style";
 import MHSelectTitle from "./select-title";
@@ -27,6 +30,7 @@ export default memo(function MHSongsHeader() {
 
   const getOnePlayList = (order, cat, limit, offset) => {
     dispatch(getOnePlayListAction(order, cat, limit, offset));
+    dispatch(changeCurrentPageNumAction(1));
   };
   return (
     <MHSongsHeaderWrapper>
