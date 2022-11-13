@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-12 21:27:30
- * @LastEditTime: 2022-11-12 22:01:10
+ * @LastEditTime: 2022-11-13 13:42:47
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\songs\c-cpns\songs-content\index.js
  * @Description:
@@ -32,7 +32,7 @@ export default memo(function MHSongsContent() {
       {oneSongsList &&
         oneSongsList.map((item, index) => {
           return (
-            <div className="song-item">
+            <div className="song-item" key={item.id}>
               <MHThemeSongsCover info={item} />
             </div>
           );

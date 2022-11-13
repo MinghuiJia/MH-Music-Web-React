@@ -1,9 +1,9 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-12 16:15:28
- * @LastEditTime: 2022-11-12 21:06:51
+ * @LastEditTime: 2022-11-13 14:38:47
  * @LastEditors: jiaminghui
- * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\songs\c-cpns\select-content\style.js
+ * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\songs\c-cpns\songs-header\select-content\style.js
  * @Description:
  */
 import styled from "styled-components";
@@ -17,7 +17,7 @@ export const MHSelectContentWrapper = styled.div`
       display: flex;
     }
     .left-item {
-        padding: 15px 0;
+      padding: 15px 0;
       display: flex;
       width: 73px;
       position: relative;
@@ -75,9 +75,19 @@ export const MHSelectContentWrapper = styled.div`
       flex-wrap: wrap;
       padding: 15px 0 15px 15px;
       .each-category {
-        a {
+        button {
           color: #333;
           font-size: 12px;
+          padding: 0 6px;
+          background-color: #fff;
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+          &.active {
+            background-color: #a7a7a7;
+            color: #fff;
+          }
         }
         span {
           font-size: 12px;

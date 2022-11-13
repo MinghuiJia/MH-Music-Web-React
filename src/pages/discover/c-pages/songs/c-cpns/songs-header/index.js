@@ -1,23 +1,37 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-12 14:23:31
- * @LastEditTime: 2022-11-12 22:30:21
+ * @LastEditTime: 2022-11-13 15:22:09
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\songs\c-cpns\songs-header\index.js
  * @Description:
  */
 import React, { memo } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+
+import { getOnePlayListAction } from "../../store/actionCreators";
 
 import { MHSongsHeaderWrapper } from "./style";
 import MHSelectTitle from "./select-title";
-import MHSelectContent from './select-content'
+import MHSelectContent from "./select-content";
 import { Button, Popover } from "antd";
 
 export default memo(function MHSongsHeader() {
+  // redux hooks
+  const { currentSongsCategory } = useSelector((state) => {
+    return {
+      currentSongsCategory: state.getIn(["songs", "currentSongsCategory"]),
+    };
+  }, shallowEqual);
+  const dispatch = useDispatch();
+
+  const getOnePlayList = (order, cat, limit, offset) => {
+    dispatch(getOnePlayListAction(order, cat, limit, offset));
+  };
   return (
     <MHSongsHeaderWrapper>
       <div className="header-left">
-        <span>全部</span>
+        <span>{currentSongsCategory}</span>
         <div className="select-category">
           <Popover
             id="myPopover"
@@ -39,7 +53,11 @@ export default memo(function MHSongsHeader() {
       </div>
       <div className="header-right">
         <div className="hot-btn sprite_button2">
-          <a href="goto">热门</a>
+          <button
+            onClick={(e) => getOnePlayList("hot", currentSongsCategory, 35, 0)}
+          >
+            热门
+          </button>
         </div>
       </div>
     </MHSongsHeaderWrapper>

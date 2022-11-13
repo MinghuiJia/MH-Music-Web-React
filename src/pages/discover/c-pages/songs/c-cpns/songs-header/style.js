@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-12 14:23:35
- * @LastEditTime: 2022-11-12 20:26:09
+ * @LastEditTime: 2022-11-13 15:18:37
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\songs\c-cpns\songs-header\style.js
  * @Description:
@@ -21,7 +21,7 @@ export const MHSongsHeaderWrapper = styled.div`
     }
     align-items: center;
     .select-category {
-      .ant-popover-inner-content{
+      .ant-popover-inner-content {
         padding: 0;
       }
       .ant-popover-content {
@@ -66,8 +66,13 @@ export const MHSongsHeaderWrapper = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      a {
+      button {
         color: #fff;
+        background-color: transparent;
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
       }
     }
   }

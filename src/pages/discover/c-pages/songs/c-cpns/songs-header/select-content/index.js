@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-12 16:15:24
- * @LastEditTime: 2022-11-12 22:30:59
+ * @LastEditTime: 2022-11-13 15:43:38
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\songs\c-cpns\songs-header\select-content\index.js
  * @Description:
@@ -9,16 +9,21 @@
 import React, { memo, useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { getPlayListCategoryAction } from "../../../store/actionCreators";
+import {
+  getPlayListCategoryAction,
+  getOnePlayListAction,
+  changeCurrentPageNumAction,
+} from "../../../store/actionCreators";
 
 import { MHSelectContentWrapper } from "./style";
 
 export default memo(function MHSelectContent() {
   // redux hooks
   const dispatch = useDispatch();
-  const { playListCategory } = useSelector((state) => {
+  const { playListCategory, currentSongsCategory } = useSelector((state) => {
     return {
       playListCategory: state.getIn(["songs", "playListCategory"]),
+      currentSongsCategory: state.getIn(["songs", "currentSongsCategory"]),
     };
   }, shallowEqual);
 
@@ -26,6 +31,11 @@ export default memo(function MHSelectContent() {
   useEffect(() => {
     dispatch(getPlayListCategoryAction());
   }, [dispatch]);
+
+  const getOnePlayList = (order, cat, limit, offset) => {
+    dispatch(getOnePlayListAction(order, cat, limit, offset));
+    dispatch(changeCurrentPageNumAction(1));
+  };
 
   const categoriesKey =
     playListCategory &&
@@ -52,7 +62,16 @@ export default memo(function MHSelectContent() {
                           className="each-category"
                           key={iten.name + iten.category}
                         >
-                          <a href="goto">{iten.name}</a>
+                          <button
+                            onClick={(e) =>
+                              getOnePlayList("hot", iten.name, 35, 0)
+                            }
+                            className={
+                              currentSongsCategory === iten.name ? "active" : ""
+                            }
+                          >
+                            {iten.name}
+                          </button>
                           <span>|</span>
                         </div>
                       ) : (
