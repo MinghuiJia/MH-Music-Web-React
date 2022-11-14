@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-12 21:27:30
- * @LastEditTime: 2022-11-13 13:42:47
+ * @LastEditTime: 2022-11-14 20:02:21
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\songs\c-cpns\songs-content\index.js
  * @Description:
@@ -9,7 +9,10 @@
 import React, { memo, useEffect } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
-import { getOnePlayListAction } from "../../store/actionCreators";
+import {
+  getOnePlayListAction,
+  changeCurrentPageNumAction,
+} from "../../store/actionCreators";
 
 import { MHSongsContentWrapper } from "./style";
 import MHThemeSongsCover from "@/components/songs-cover";
@@ -26,6 +29,7 @@ export default memo(function MHSongsContent() {
   // other hooks
   useEffect(() => {
     dispatch(getOnePlayListAction("hot", "全部", 35, 0));
+    dispatch(changeCurrentPageNumAction(1));
   }, [dispatch]);
   return (
     <MHSongsContentWrapper>

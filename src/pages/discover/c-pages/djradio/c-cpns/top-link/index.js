@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-13 20:37:52
- * @LastEditTime: 2022-11-13 22:34:50
+ * @LastEditTime: 2022-11-14 19:59:33
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\djradio\c-cpns\top-link\index.js
  * @Description:
@@ -11,7 +11,8 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 import {
   getDjCategoryListAction,
-  changeCurrentCategoryAction,
+  changeCurrentCategoryIdAction,
+  changeCurrentPageNumAction,
 } from "../../store/actionCreators";
 
 import { MHTopLinkWrapper, LinkItem } from "./style";
@@ -22,23 +23,26 @@ export default memo(function MHTopLink() {
   const [leftActive, setLeftActive] = useState(false);
   // redux hooks
   const dispatch = useDispatch();
-  const { djCategoryList, currentCategory } = useSelector((state) => {
+  const { djCategoryList, currentCategoryId } = useSelector((state) => {
     return {
       djCategoryList: state.getIn(["djRadio", "djCategoryList"]),
-      currentCategory: state.getIn(["djRadio", "currentCategory"]),
+      currentCategoryId: state.getIn(["djRadio", "currentCategoryId"]),
     };
   }, shallowEqual);
 
   // other hooks
   useEffect(() => {
     dispatch(getDjCategoryListAction());
+    dispatch(changeCurrentCategoryIdAction(3));
+    dispatch(changeCurrentPageNumAction(1));
   }, [dispatch]);
 
   const carouselRef = useRef();
 
   // other function
-  const changeCategory = (name) => {
-    dispatch(changeCurrentCategoryAction(name));
+  const changeCategoryId = (id) => {
+    dispatch(changeCurrentCategoryIdAction(id));
+    dispatch(changeCurrentPageNumAction(1));
   };
 
   const changePrev = () => {
@@ -53,11 +57,23 @@ export default memo(function MHTopLink() {
       setLeftActive(true);
     }
   };
+  const changeCurrentPage = (current) => {
+    console.log(current);
+    if (current === 0) {
+      setLeftActive(false);
+    } else {
+      setLeftActive(true);
+    }
+  };
 
   return (
     <MHTopLinkWrapper>
       <div className="top-link">
-        <Carousel effect="fade" ref={carouselRef}>
+        <Carousel
+          effect="fade"
+          ref={carouselRef}
+          afterChange={(current) => changeCurrentPage(current)}
+        >
           <div className="page1">
             {djCategoryList &&
               djCategoryList
@@ -67,8 +83,8 @@ export default memo(function MHTopLink() {
                     <LinkItem
                       key={item.picUWPId}
                       bgImgUrl={item.picWebUrl}
-                      className={currentCategory === item.name ? "active" : ""}
-                      onClick={(e) => changeCategory(item.name)}
+                      className={currentCategoryId === item.id ? "active" : ""}
+                      onClick={(e) => changeCategoryId(item.id)}
                     >
                       <i className="icon"></i>
                       <span>{item.name}</span>
@@ -86,8 +102,8 @@ export default memo(function MHTopLink() {
                     <LinkItem
                       key={item.picUWPId}
                       bgImgUrl={item.picWebUrl}
-                      className={currentCategory === item.name ? "active" : ""}
-                      onClick={(e) => changeCategory(item.name)}
+                      className={currentCategoryId === item.id ? "active" : ""}
+                      onClick={(e) => changeCategoryId(item.id)}
                     >
                       <i className="icon"></i>
                       <span>{item.name}</span>

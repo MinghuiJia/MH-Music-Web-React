@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-13 20:37:57
- * @LastEditTime: 2022-11-13 22:33:47
+ * @LastEditTime: 2022-11-14 15:58:06
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\djradio\c-cpns\top-link\style.js
  * @Description:
@@ -57,6 +57,7 @@ export const MHTopLinkWrapper = styled.div`
       height: 20px;
       background-image: url(${require("@/assets/img/radio_slide.png")}) !important;
       background-position: 0 0 !important;
+      position: relative;
     }
     &.slick-active button {
       background-position: -30px 0 !important;
