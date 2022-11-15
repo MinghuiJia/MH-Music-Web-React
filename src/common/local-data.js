@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-19 12:37:25
- * @LastEditTime: 2022-11-10 16:58:25
+ * @LastEditTime: 2022-11-15 20:15:50
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\common\local-data.js
  * @Description:
@@ -279,7 +279,7 @@ export const globalRanking = [
     info: "更新14首",
     idx: 25,
   },
-  
+
   {
     title: "云音乐韩语榜",
     img: "https://p1.music.126.net/5oN9YaFznwNGXkmi8i2Ytw==/109951167430864741.jpg",
@@ -316,5 +316,55 @@ export const globalRanking = [
     img: "https://p1.music.126.net/Ag7RyRCYiINcd9EtRXf6xA==/109951164432303690.jpg",
     info: "更新80首",
     idx: 36,
+  },
+];
+
+export const singerList = [
+  {
+    type: "推荐",
+    links: [
+      { title: "推荐歌手", catCode: 0 },
+      { title: "入驻歌手", catCode: 5001 },
+    ],
+  },
+  {
+    type: "华语",
+    links: [
+      { title: "华语男歌手", catCode: 1001 },
+      { title: "华语女歌手", catCode: 1002 },
+      { title: "华语组合/乐队", catCode: 1003 },
+    ],
+  },
+  {
+    type: "欧美",
+    links: [
+      { title: "欧美男歌手", catCode: 2001 },
+      { title: "欧美女歌手", catCode: 2002 },
+      { title: "欧美组合/乐队", catCode: 2003 },
+    ],
+  },
+  {
+    type: "日本",
+    links: [
+      { title: "日本男歌手", catCode: 6001 },
+      { title: "日本女歌手", catCode: 6002 },
+      { title: "日本组合/乐队", catCode: 6003 },
+    ],
+  },
+  {
+    type: "韩国",
+    links: [
+      { title: "韩国男歌手", catCode: 7001 },
+      { title: "韩国女歌手", catCode: 7002 },
+      { title: "韩国组合/乐队", catCode: 7003 },
+    ],
+  },
+  {
+    type: "其他",
+    links: [
+      { title: "其他男歌手", catCode: 4001 },
+      { title: "其他女歌手", catCode: 4002 },
+      { title: "其他组合/乐队", catCode: 4003  },
+    ],
   },
 ];

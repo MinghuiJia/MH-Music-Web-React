@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-20 11:52:42
- * @LastEditTime: 2022-11-13 20:54:10
+ * @LastEditTime: 2022-11-15 21:52:46
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\store\reducer.js
  * @Description:
@@ -14,6 +14,7 @@ import { playerReducer } from "../pages/player/store";
 import { rankingReducer } from "../pages/discover/c-pages/ranking/store";
 import { songsReducer } from "../pages/discover/c-pages/songs/store";
 import { djRadioReducer } from "../pages/discover/c-pages/djradio/store";
+import { singerReducer } from "../pages/discover/c-pages/artist/store";
 
 // 这里combineReducers本质上也是创建一个新的对象，对每个子reducer进行合并的，这里不能直接用Map进行包裹完成Immutable操作
 // 原因1：这里每合并一次就进行一个Map包裹是不合理的，需要进行优化
@@ -26,6 +27,7 @@ const reducer = combineReducers({
   ranking: rankingReducer,
   songs: songsReducer,
   djRadio: djRadioReducer,
+  singer: singerReducer,
 });
 
 export default reducer;
