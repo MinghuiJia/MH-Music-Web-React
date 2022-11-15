@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-15 20:08:27
- * @LastEditTime: 2022-11-15 21:29:45
+ * @LastEditTime: 2022-11-15 22:42:30
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\artist\c-cpns\artist-link\index.js
  * @Description:
@@ -9,12 +9,15 @@
 import React, { memo } from "react";
 
 import { singerList } from "@/common/local-data";
+import { changeSingerCategoryAction } from "../../store/actionCreators";
 
 import { MHArtistLinkWrapper } from "./style";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-export default memo(function MHArtistLink(props) {
-  const { changeSingerCategory } = props;
+export default memo(function MHArtistLink() {
+  // redux hooks
+  const dispatch = useDispatch();
 
   return (
     <MHArtistLinkWrapper>
@@ -30,7 +33,9 @@ export default memo(function MHArtistLink(props) {
                       to="/discover/artist"
                       key={iten.title}
                       exact
-                      onClick={(e) => changeSingerCategory(iten.title)}
+                      onClick={(e) =>
+                        dispatch(changeSingerCategoryAction(iten.title))
+                      }
                     >
                       {iten.title}
                     </NavLink>
@@ -41,7 +46,9 @@ export default memo(function MHArtistLink(props) {
                       to="/discover/artist/signed"
                       key={iten.title}
                       exact
-                      onClick={(e) => changeSingerCategory(iten.title)}
+                      onClick={(e) =>
+                        dispatch(changeSingerCategoryAction(iten.title))
+                      }
                     >
                       {iten.title}
                     </NavLink>
@@ -52,7 +59,9 @@ export default memo(function MHArtistLink(props) {
                       to={`/discover/artist/cat/${iten.catCode}`}
                       key={iten.title}
                       exact
-                      onClick={(e) => changeSingerCategory(iten.title)}
+                      onClick={(e) =>
+                        dispatch(changeSingerCategoryAction(iten.title))
+                      }
                     >
                       {iten.title}
                     </NavLink>
