@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-16 20:36:28
- * @LastEditTime: 2022-11-16 21:23:23
+ * @LastEditTime: 2022-11-16 23:05:21
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\artist\c-cpns\artist-cover\style.js
  * @Description:
@@ -22,6 +22,7 @@ export const MHArtistCoverWrapper = styled.div`
       justify-content: space-between;
       margin-top: 8px;
       .singer-name {
+        width: 110px;
         color: #000;
       }
       .icon {
