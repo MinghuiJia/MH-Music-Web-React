@@ -1,29 +1,91 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-15 21:21:36
- * @LastEditTime: 2022-11-15 21:59:29
+ * @LastEditTime: 2022-11-16 22:55:52
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\artist\c-cpns\artist-category\index.js
  * @Description:
  */
-import React, { memo } from "react";
+import React, { memo, useCallback, useEffect, useRef } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+
+import { getCategorySingerAction } from "../../store/actionCreators";
 
 import { MHArtistCategoryWrapper } from "./style";
 import MHArtistTitle from "../artist-title";
-import { shallowEqual, useSelector } from "react-redux";
+import MHSearchBar from "../search-bar";
+import MHArtistCover from "../artist-cover";
+import MHArtistName from "../artist-name";
 
 export default memo(function MHArtistCategory(props) {
   const id = props.match.params.id;
+
+  // redux hooks
+  const dispatch = useDispatch();
+  const { categorySinger } = useSelector((state) => {
+    return {
+      categorySinger: state.getIn(["singer", "categorySinger"]),
+    };
+  });
+
+  // other hooks
+  useEffect(() => {
+    dispatch(getCategorySingerAction(id));
+    console.log(clickRef.current.click());
+  }, [dispatch, id]);
 
   const { singerCategory } = useSelector((state) => {
     return {
       singerCategory: state.getIn(["singer", "singerCategory"]),
     };
   }, shallowEqual);
+  const clickRef = useRef();
+
+  // other function
+  const changeCurrentInitial = useCallback(
+    (initial) => {
+      if (initial === "hot") {
+        dispatch(getCategorySingerAction(id));
+      } else {
+        dispatch(getCategorySingerAction(id, initial));
+      }
+    },
+    [id, dispatch]
+  );
   return (
     <MHArtistCategoryWrapper>
       <MHArtistTitle titleName={singerCategory} more={""} />
-      <h2>MHArtistCategory:{id}</h2>
+      <MHSearchBar
+        changeCurrentInitial={(initial) => changeCurrentInitial(initial)}
+        ref={clickRef}
+      />
+
+      <div className="singer">
+        <div className="img-cover">
+          {categorySinger &&
+            categorySinger
+              .filter((item, index) => index < 10)
+              .map((item, index) => {
+                return (
+                  <div className="cover-item" key={item.id}>
+                    <MHArtistCover info={item} />
+                  </div>
+                );
+              })}
+        </div>
+        <div className="name-list">
+          {categorySinger &&
+            categorySinger
+              .filter((item, index) => index >= 10)
+              .map((item, index) => {
+                return (
+                  <div className="name-item" key={item.id}>
+                    <MHArtistName info={item} />
+                  </div>
+                );
+              })}
+        </div>
+      </div>
     </MHArtistCategoryWrapper>
   );
 });

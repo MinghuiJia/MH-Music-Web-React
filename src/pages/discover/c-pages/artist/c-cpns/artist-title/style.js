@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-15 21:31:16
- * @LastEditTime: 2022-11-15 21:57:10
+ * @LastEditTime: 2022-11-16 20:40:53
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\artist\c-cpns\artist-title\style.js
  * @Description:
@@ -9,7 +9,6 @@
 import styled from "styled-components";
 
 export const MHArtistTitleWrapper = styled.div`
-  padding: 40px;
   .title {
     display: flex;
     justify-content: space-between;
