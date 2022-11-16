@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-16 21:44:22
- * @LastEditTime: 2022-11-16 21:50:16
+ * @LastEditTime: 2022-11-16 23:03:14
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\artist\c-cpns\artist-name\index.js
  * @Description:
@@ -15,7 +15,7 @@ export default memo(function MHArtistName(props) {
   return (
     <MHArtistNameWrapper>
       <div className="item-name">
-        <a href="goto" className="singer-name">
+        <a href="goto" className="singer-name text-nowrap">
           {info.name}
         </a>
         <a href="goto">

@@ -14,6 +14,7 @@ export const MHArtistNameWrapper = styled.div`
     height: 30px;
     display: flex;
     .singer-name {
+      max-width: 100px;
       color: #000;
     }
     .icon {
