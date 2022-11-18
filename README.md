@@ -1,7 +1,7 @@
 <!--
  * @Author: jiaminghui
  * @Date: 2022-10-18 22:12:48
- * @LastEditTime: 2022-11-17 21:11:39
+ * @LastEditTime: 2022-11-18 22:34:14
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\README.md
  * @Description: 
@@ -54,3 +54,49 @@
 
 - 播放列表
 ![](./readme_pic/player-list.png)
+
+### 发现音乐——排行榜
+
+- 排行榜展示及不同类型排行榜切换
+![](./readme_pic/ranking-page.png)
+![](./readme_pic/ranking-page2.png)
+
+- 排行榜歌曲添加至播放列表并顺序播放
+![](./readme_pic/ranking-player1.png)
+![](./readme_pic/ranking-player2.png)
+
+### 发现音乐——歌单
+
+- 歌单展示
+![](./readme_pic/songs.png)
+
+- 歌单类型切换
+![](./readme_pic/songs2.png)
+![](./readme_pic/songs3.png)
+
+- 歌单分页
+![](./readme_pic/songs4.png)
+
+### 发现音乐——主播电台
+
+- 电台展示
+![](./readme_pic/djradio.png)
+
+- 类型选择切换
+![](./readme_pic/djradio2.png)
+![](./readme_pic/djradio3.png)
+
+### 发现音乐——歌手
+
+- 歌手展示即类型切换
+![](./readme_pic/singer.png)
+![](./readme_pic/singer2.png)
+
+- 歌手名字排序
+![](./readme_pic/singer3.png)
+
+### 发现音乐——新碟上架
+
+- 新碟展示即分页
+![](./readme_pic/album.png)
+![](./readme_pic/album2.png)
