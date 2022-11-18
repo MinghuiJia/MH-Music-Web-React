@@ -1,7 +1,7 @@
 <!--
  * @Author: jiaminghui
  * @Date: 2022-10-18 22:12:48
- * @LastEditTime: 2022-11-18 22:34:14
+ * @LastEditTime: 2022-11-18 22:48:33
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\README.md
  * @Description: 
@@ -29,6 +29,10 @@
 - 在Item的配置中，配置构建后操作
 **注意：react项目中，不能报eslint的警告，不然jenkins打包项目时会报错，会自动将warn转成成错误**
 
+## 项目访问地址
+
+- 基于华为云服务器，将项目部署在上面：（访问网址：http://139.9.104.53:7878/#/discover/recommend）
+**注意：云服务器性能较低，访问过程中部分功能反应较慢，请耐心等待**
 
 ## 当前完成的项目功能
 
