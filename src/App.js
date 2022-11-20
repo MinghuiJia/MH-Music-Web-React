@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-18 22:17:08
- * @LastEditTime: 2022-11-07 16:17:28
+ * @LastEditTime: 2022-11-20 16:26:12
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\App.js
  * @Description:
@@ -18,6 +18,8 @@ import MHAppHeader from "@/components/app-header";
 import MHAppFooter from "@/components/app-footer";
 import MHAppPlayerBar from "./pages/player/app-player-bar";
 import MHAppPlayerList from "./pages/player/app-player-list";
+import MHToTop from "@/components/to-top";
+
 
 export default memo(function App() {
   return (
@@ -32,6 +34,7 @@ export default memo(function App() {
         <MHAppFooter />
         <MHAppPlayerBar />
         <MHAppPlayerList />
+        <MHToTop />
       </HashRouter>
     </Provider>
   );
