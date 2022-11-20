@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-15 20:08:27
- * @LastEditTime: 2022-11-15 22:42:30
+ * @LastEditTime: 2022-11-20 17:01:06
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\artist\c-cpns\artist-link\index.js
  * @Description:
@@ -33,9 +33,12 @@ export default memo(function MHArtistLink() {
                       to="/discover/artist"
                       key={iten.title}
                       exact
-                      onClick={(e) =>
-                        dispatch(changeSingerCategoryAction(iten.title))
-                      }
+                      onClick={(e) => {
+                        dispatch(changeSingerCategoryAction(iten.title));
+                        document
+                          .querySelector("#artist-title")
+                          .scrollIntoView(true);
+                      }}
                     >
                       {iten.title}
                     </NavLink>
@@ -46,9 +49,12 @@ export default memo(function MHArtistLink() {
                       to="/discover/artist/signed"
                       key={iten.title}
                       exact
-                      onClick={(e) =>
-                        dispatch(changeSingerCategoryAction(iten.title))
-                      }
+                      onClick={(e) => {
+                        dispatch(changeSingerCategoryAction(iten.title));
+                        document
+                          .querySelector("#artist-title")
+                          .scrollIntoView(true);
+                      }}
                     >
                       {iten.title}
                     </NavLink>
@@ -59,9 +65,12 @@ export default memo(function MHArtistLink() {
                       to={`/discover/artist/cat/${iten.catCode}`}
                       key={iten.title}
                       exact
-                      onClick={(e) =>
-                        dispatch(changeSingerCategoryAction(iten.title))
-                      }
+                      onClick={(e) => {
+                        dispatch(changeSingerCategoryAction(iten.title));
+                        document
+                          .querySelector("#artist-title")
+                          .scrollIntoView(true);
+                      }}
                     >
                       {iten.title}
                     </NavLink>

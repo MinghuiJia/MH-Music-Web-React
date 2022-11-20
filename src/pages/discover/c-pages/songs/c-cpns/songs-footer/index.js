@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-12 22:09:14
- * @LastEditTime: 2022-11-13 16:11:52
+ * @LastEditTime: 2022-11-20 16:54:34
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\songs\c-cpns\songs-footer\index.js
  * @Description:
@@ -42,6 +42,7 @@ export default memo(function MHSongsFooter() {
       )
     );
     dispatch(changeCurrentPageNumAction(page));
+    document.querySelector("#song-header").scrollIntoView(true);
   };
   return (
     <MHSongsFooterWrapper>
@@ -54,7 +55,6 @@ export default memo(function MHSongsFooter() {
           onChange={(page, pageSize) => changePage(page, pageSize)}
         />
       </div>
-      
     </MHSongsFooterWrapper>
   );
 });

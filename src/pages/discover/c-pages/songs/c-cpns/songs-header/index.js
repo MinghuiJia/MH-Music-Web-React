@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-12 14:23:31
- * @LastEditTime: 2022-11-13 16:14:57
+ * @LastEditTime: 2022-11-20 16:54:02
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\songs\c-cpns\songs-header\index.js
  * @Description:
@@ -34,7 +34,7 @@ export default memo(function MHSongsHeader() {
   };
   return (
     <MHSongsHeaderWrapper>
-      <div className="header-left">
+      <div className="header-left" id="song-header">
         <span>{currentSongsCategory}</span>
         <div className="select-category">
           <Popover

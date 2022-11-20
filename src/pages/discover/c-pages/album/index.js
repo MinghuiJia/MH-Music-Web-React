@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-10-19 21:55:44
- * @LastEditTime: 2022-11-17 21:05:43
+ * @LastEditTime: 2022-11-20 17:03:43
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\album\index.js
  * @Description:
@@ -48,6 +48,7 @@ export default memo(function MHAlbum() {
   const changePage = (page, pageSize) => {
     dispatch(changeCurrentPageAction(page));
     dispatch(getAllAlbumAction((page - 1) * 35), 35);
+    document.querySelector("#all-album-title").scrollIntoView(true);
   };
   return (
     <MHAlbumWrapper>
@@ -67,7 +68,7 @@ export default memo(function MHAlbum() {
                 })}
           </div>
         </div>
-        <div className="all-album">
+        <div className="all-album" id="all-album-title">
           <MHAlbumTitle title={"全部新碟"} />
           <div className="album-div">
             {allAlbum &&

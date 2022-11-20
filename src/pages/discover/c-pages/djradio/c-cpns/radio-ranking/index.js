@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-14 16:22:27
- * @LastEditTime: 2022-11-14 19:42:16
+ * @LastEditTime: 2022-11-20 16:56:39
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\djradio\c-cpns\radio-ranking\index.js
  * @Description:
@@ -45,12 +45,13 @@ export default memo(function MHRadioRanking() {
   const changeCurrentPage = useCallback(
     (page, pageSize) => {
       dispatch(changeCurrentPageNumAction(page));
+      document.querySelector("#radio-ranking").scrollIntoView(true);
     },
     [dispatch]
   );
   return (
     <MHRadioRankingWrapper>
-      <div className="radio-ranking-title">
+      <div className="radio-ranking-title" id="radio-ranking">
         <div className="left">
           <span>{"电台排行榜"}</span>
         </div>
