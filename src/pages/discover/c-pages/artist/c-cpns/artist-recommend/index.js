@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-15 20:48:24
- * @LastEditTime: 2022-11-16 22:03:11
+ * @LastEditTime: 2022-11-22 16:29:20
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\artist\c-cpns\artist-recommend\index.js
  * @Description:
@@ -31,7 +31,7 @@ export default memo(function MHArtistRecommend() {
 
   // other hooks
   useEffect(() => {
-    dispatch(getSignedSingerAction(80, 0));
+    dispatch(getSignedSingerAction(50, 0));
     dispatch(getHotSingerAction());
   }, [dispatch]);
 

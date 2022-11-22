@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-15 21:45:31
- * @LastEditTime: 2022-11-16 22:33:11
+ * @LastEditTime: 2022-11-22 16:51:06
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\artist\store\actionCreators.js
  * @Description:
@@ -45,7 +45,9 @@ export const getSignedSingerAction = (limit, offset) => {
   return (dispatch, getState) => {
     getSignedSinger(limit, offset).then((res) => {
       console.log(res);
-      dispatch(changeSignedSingerAction(res.artists));
+      let old_artists = getState().getIn(["singer", "signedSinger"]);
+      let new_artists = [...old_artists, ...res.artists];
+      dispatch(changeSignedSingerAction(new_artists));
     });
   };
 };
