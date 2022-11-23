@@ -50,7 +50,7 @@ export default memo(function MHArtistSigned() {
       if (isLoading === false) {
         // 判断当前是否在加载新内容，防止重复加载
         setIsLoading(true);
-        // setTimeout里面的操作,setState是同步的
+        // setTimeout里面的操作,setState不是批量更新的，但是hooks里面也不会同步获取更新后的值
         setTimeout(() => {
           dispatch(getSignedSingerAction(50, currentPage * 50));
           setCurrentPage(currentPage + 1);
