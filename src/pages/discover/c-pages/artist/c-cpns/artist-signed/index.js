@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-15 21:18:15
- * @LastEditTime: 2022-11-22 17:33:05
+ * @LastEditTime: 2022-11-23 13:32:40
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\artist\c-cpns\artist-signed\index.js
  * @Description:
@@ -9,7 +9,10 @@
 import React, { memo, useEffect, useState, useCallback } from "react";
 import { shallowEqual, useSelector, useDispatch } from "react-redux";
 
-import { getSignedSingerAction } from "../../store/actionCreators";
+import {
+  getSignedSingerAction,
+  changeSignedSingerAction,
+} from "../../store/actionCreators";
 
 import { MHArtistSignedWrapper } from "./style";
 import MHArtistTitle from "../artist-title";
@@ -44,7 +47,8 @@ export default memo(function MHArtistSigned() {
     // console.log("signed singer clientHeight:", clientHeight);
     // console.log("signed singer htmlHeight:", htmlHeight);
     if (scrollTop + clientHeight >= htmlHeight - 800) {
-      if (isLoading === false) {// 判断当前是否在加载新内容，防止重复加载
+      if (isLoading === false) {
+        // 判断当前是否在加载新内容，防止重复加载
         setIsLoading(true);
         // setTimeout里面的操作,setState是同步的
         setTimeout(() => {
@@ -66,6 +70,13 @@ export default memo(function MHArtistSigned() {
       };
     }
   }, [handleScrollLoading, currentPage]);
+
+  // 页面首次加载时，只请求50个入驻歌手
+  useEffect(() => {
+    // 需要先情况，因为getSignedSingerAction是在请求的基础上追加到signedSinger列表中
+    dispatch(changeSignedSingerAction([]));
+    dispatch(getSignedSingerAction(50, 0));
+  }, [dispatch]);
 
   return (
     <MHArtistSignedWrapper>
