@@ -35,6 +35,9 @@
 
 - **注意：云服务器性能较低，访问过程中部分功能反应较慢，请耐心等待**
 
+## 项目技术总结
+- 🔗 查看跳转 👉<a href="https://github.com/MinghuiJia/mh-music-web-react/issues">Issues</a>
+
 ## 当前完成的项目功能
 
 ### 发现音乐——推荐页
