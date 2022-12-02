@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-15 21:21:36
- * @LastEditTime: 2022-11-16 22:55:52
+ * @LastEditTime: 2022-12-02 17:11:29
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\artist\c-cpns\artist-category\index.js
  * @Description:
@@ -22,11 +22,12 @@ export default memo(function MHArtistCategory(props) {
 
   // redux hooks
   const dispatch = useDispatch();
-  const { categorySinger } = useSelector((state) => {
+  const { singerCategory, categorySinger } = useSelector((state) => {
     return {
+      singerCategory: state.getIn(["singer", "singerCategory"]),
       categorySinger: state.getIn(["singer", "categorySinger"]),
     };
-  });
+  }, shallowEqual);
 
   // other hooks
   useEffect(() => {
@@ -34,11 +35,6 @@ export default memo(function MHArtistCategory(props) {
     console.log(clickRef.current.click());
   }, [dispatch, id]);
 
-  const { singerCategory } = useSelector((state) => {
-    return {
-      singerCategory: state.getIn(["singer", "singerCategory"]),
-    };
-  }, shallowEqual);
   const clickRef = useRef();
 
   // other function

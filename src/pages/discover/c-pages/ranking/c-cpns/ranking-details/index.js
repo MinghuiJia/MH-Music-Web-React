@@ -1,7 +1,7 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-10 17:34:29
- * @LastEditTime: 2022-12-02 15:09:34
+ * @LastEditTime: 2022-12-02 18:02:02
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\ranking\c-cpns\ranking-details\index.js
  * @Description:
@@ -11,8 +11,10 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getSizeImg } from "@/utils/format-utils";
-import { getSongDetailAction } from "@/pages/player/store/actionCreators";
-import { changePlayListRankingAction } from "../../store/actionCreators";
+import {
+  getSongDetailAction,
+  changePlayListAction,
+} from "@/pages/player/store/actionCreators";
 
 import { MHRankingDetailsWrapper } from "./style";
 
@@ -34,11 +36,12 @@ export default memo(function MHRankingDetails(props) {
 
   const sequencePlay = () => {
     dispatch(
-      changePlayListRankingAction(
+      changePlayListAction(
         rankingList.tracks &&
           rankingList.tracks.filter((item, index) => index < 20)
       )
     );
+    dispatch(getSongDetailAction(rankingList.tracks[0].id));
   };
 
   return (
@@ -134,9 +137,7 @@ export default memo(function MHRankingDetails(props) {
                               <i
                                 className={
                                   "play-icon sprite_table" +
-                                  (currentSong.id === item.id
-                                    ? " active"
-                                    : "")
+                                  (currentSong.id === item.id ? " active" : "")
                                 }
                                 onClick={(e) => playMusic(item)}
                               ></i>
@@ -184,9 +185,7 @@ export default memo(function MHRankingDetails(props) {
                               <i
                                 className={
                                   "play-icon sprite_table" +
-                                  (currentSong.id === item.id
-                                    ? " active"
-                                    : "")
+                                  (currentSong.id === item.id ? " active" : "")
                                 }
                                 onClick={(e) => playMusic(item)}
                               ></i>
