@@ -64,7 +64,7 @@ export const MHThemeSongsCoverWrapper = styled.div`
       font-size: 14px;
     }
   }
-  .content-item:nth-child(0) {
+  /* .content-item:nth-child(0) {
     margin-bottom: 0;
-  }
+  } */
 `;

@@ -1,12 +1,12 @@
 /*
  * @Author: jiaminghui
  * @Date: 2022-11-10 17:34:29
- * @LastEditTime: 2022-11-11 21:45:27
+ * @LastEditTime: 2022-12-02 15:09:34
  * @LastEditors: jiaminghui
  * @FilePath: \mh-music-web-react\src\pages\discover\c-pages\ranking\c-cpns\ranking-details\index.js
  * @Description:
  */
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,8 +18,6 @@ import { MHRankingDetailsWrapper } from "./style";
 
 export default memo(function MHRankingDetails(props) {
   const { rankingList } = props;
-  // state
-  const [isPlay, setIsPlay] = useState(false);
 
   // redux hooks
   const dispatch = useDispatch();
@@ -31,7 +29,6 @@ export default memo(function MHRankingDetails(props) {
   const playMusic = (item) => {
     if (item.id) {
       dispatch(getSongDetailAction(item.id));
-      setIsPlay(true);
     }
   };
 
@@ -42,7 +39,6 @@ export default memo(function MHRankingDetails(props) {
           rankingList.tracks.filter((item, index) => index < 20)
       )
     );
-    setIsPlay(true);
   };
 
   return (
@@ -138,7 +134,7 @@ export default memo(function MHRankingDetails(props) {
                               <i
                                 className={
                                   "play-icon sprite_table" +
-                                  (isPlay && currentSong.id === item.id
+                                  (currentSong.id === item.id
                                     ? " active"
                                     : "")
                                 }
@@ -188,7 +184,7 @@ export default memo(function MHRankingDetails(props) {
                               <i
                                 className={
                                   "play-icon sprite_table" +
-                                  (isPlay && currentSong.id === item.id
+                                  (currentSong.id === item.id
                                     ? " active"
                                     : "")
                                 }
